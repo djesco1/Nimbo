@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nimbo</title>
+<meta name="description" content="Lenguaje gráfico agnóstico para arquitecturas en la nube: componentes, relaciones y equivalencias en AWS, Azure y Google Cloud.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: herramienta de consulta. Cabecera y navegación, rejilla de iconos por familia con inspector fijo, luego relaciones, reglas y ejemplo. */
+:root{
+  --bg:#F5F6F8; --surface:#FFFFFF; --fg:#1A1D23; --muted:#5D6472; --line:#E0E3E9; --focus:#3B5BDB;
+  --f-compute:#6B62D6; --f-db:#2F7FD0; --f-storage:#A86A10; --f-analytics:#4E8418; --f-ai:#C2427A;
+  --f-msg:#C9502A; --f-net:#14896A; --f-sec:#CF3B3A; --f-ops:#6F6D66; --f-actor:#2A2E36;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111419; --surface:#191D24; --fg:#E6E9EF; --muted:#9AA1AF; --line:#2A303A; --focus:#8EA6FF;
+  --f-compute:#A39CF0; --f-db:#79B2EE; --f-storage:#E2A447; --f-analytics:#93C457; --f-ai:#EE8FB4;
+  --f-msg:#F0936E; --f-net:#55C7A0; --f-sec:#F08585; --f-ops:#B0AEA6; --f-actor:#D8DCE4; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111419; --surface:#191D24; --fg:#E6E9EF; --muted:#9AA1AF; --line:#2A303A; --focus:#8EA6FF;
+  --f-compute:#A39CF0; --f-db:#79B2EE; --f-storage:#E2A447; --f-analytics:#93C457; --f-ai:#EE8FB4;
+  --f-msg:#F0936E; --f-net:#55C7A0; --f-sec:#F08585; --f-ops:#B0AEA6; --f-actor:#D8DCE4; color-scheme:dark}
+*{box-sizing:border-box}
+html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.5;padding-inline:20px;padding-block:28px 56px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;gap:28px}
+header{display:grid;gap:8px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand svg{width:30px;height:30px}
+h1{font-size:28px;font-weight:600;margin:0;letter-spacing:-.01em}
+.lede{margin:0;color:var(--muted);max-width:70ch}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.stats span{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:2px 8px;font-variant-numeric:tabular-nums}
+nav.toc{display:flex;flex-wrap:wrap;gap:4px 20px;font-size:14px;border-bottom:1px solid var(--line);padding-bottom:10px}
+nav.toc a{color:var(--fg);text-decoration:none;font-weight:500}
+nav.toc a span{font-family:var(--mono);font-size:12px;color:var(--muted);margin-right:6px}
+nav.toc a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.block{display:grid;gap:14px;scroll-margin-top:16px}
+.block>h2{font-size:21px;font-weight:600;margin:0;text-wrap:balance}
+.controls{display:grid;gap:10px}
+.controls label{font-size:13px;color:var(--muted)}
+#q{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:13px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--fg);cursor:pointer}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--c,var(--muted));display:inline-block}
+.chip[aria-pressed="true"]{border-color:var(--fg);box-shadow:inset 0 0 0 1px var(--fg)}
+.chip b{font-weight:400;color:var(--muted);font-variant-numeric:tabular-nums}
+.main{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:28px;align-items:start}
+@media (max-width:860px){.main{grid-template-columns:minmax(0,1fr)}.inspector{order:-1;position:static!important}}
+section.fam{display:grid;gap:10px;margin-bottom:26px}
+.famhead{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);padding-bottom:6px;flex-wrap:wrap}
+.famhead h3{font-size:15px;font-weight:600;margin:0}
+.famhead .sw{width:10px;height:10px;border-radius:2px;background:var(--c);align-self:center}
+.famhead small{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(116px,1fr));gap:8px}
+.card{font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 6px 10px;display:grid;justify-items:center;gap:5px;cursor:pointer;text-align:center;min-width:0;position:relative}
+.card:hover{border-color:var(--muted)}
+.card[aria-current="true"]{border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c)}
+.card svg{width:44px;height:44px;color:var(--c)}
+.card .n{font-size:13px;line-height:1.25}
+.card .k{font-family:var(--mono);font-size:11px;color:var(--muted);overflow-wrap:anywhere}
+.tier{position:absolute;top:6px;right:6px;font-family:var(--mono);font-size:10px;line-height:1;padding:3px 4px;border-radius:3px;border:1px solid var(--line);color:var(--muted)}
+.tier.notation{border-style:dashed}
+.inspector{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px;display:grid;gap:12px}
+.big{display:grid;place-items:center;height:120px;border:1px dashed var(--line);border-radius:6px;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:11px 11px;background-position:center}
+.big svg{width:88px;height:88px;background:var(--surface);color:var(--c)}
+.inspector h3{margin:0;font-size:18px;font-weight:600}
+.inspector p{margin:0;font-size:14px}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:13px;margin:0}
+.meta dt{color:var(--muted)} .meta dd{margin:0;font-family:var(--mono);overflow-wrap:anywhere}
+.tr{display:grid;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.tr div{display:grid;grid-template-columns:62px 1fr;gap:8px;padding:7px 10px;font-size:13px;border-top:1px solid var(--line)}
+.tr div:first-child{border-top:0}
+.tr b{font-family:var(--mono);font-weight:500;font-size:12px;color:var(--muted)}
+.tr .none{color:var(--muted)}
+.note{font-size:13px;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font:inherit;font-size:13px;padding:7px 12px;border-radius:6px;border:1px solid var(--fg);background:var(--fg);color:var(--bg);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--line)}
+.status{font-size:12px;color:var(--muted);min-height:18px;margin:0}
+textarea{position:absolute;left:-9999px;width:1px;height:1px}
+.empty{color:var(--muted)}
+.rels{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.rel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:grid;gap:10px;align-content:start;min-width:0}
+.rel svg{width:100%;height:40px;display:block}
+.rel .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.rel h3{margin:0;font-size:15px;font-weight:600}
+.rel .k{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.rel dl{display:grid;gap:4px;margin:0;font-size:13px}
+.rel dt{color:var(--muted);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.rel dd{margin:0 0 6px}
+.rel code{font-family:var(--mono);font-size:12px}
+.props{display:flex;flex-wrap:wrap;gap:4px}
+.props span{font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;color:var(--muted)}
+ol.rl{margin:0;padding-left:22px;display:grid;gap:8px;max-width:80ch}
+ol.rl li::marker{font-family:var(--mono);color:var(--muted)}
+code{font-family:var(--mono);font-size:.9em}
+.ex{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start}
+@media (max-width:1000px){.ex{grid-template-columns:minmax(0,1fr)}}
+.diagram{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px;overflow-x:auto}
+.diagram svg{display:block;width:100%;min-width:720px;height:auto}
+.derive{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px;display:grid;gap:8px;font-size:14px}
+.derive h3{margin:0;font-size:15px;font-weight:600}
+.derive ul{margin:0;padding-left:18px;display:grid;gap:6px}
+footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
+footer a{color:var(--fg)}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .12s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 32A8 8 0 0 1 12 16A11 11 0 0 1 33 14A9 9 0 0 1 33 32Z"/><path d="M16 26H28M24 22L28 26L24 30"/></svg>
+      <h1>Nimbo</h1>
+    </div>
+    <p class="lede">Lenguaje gráfico para arquitecturas en la nube que no depende del proveedor. Cada icono representa un rol, cada flecha una relación tipada, y la tabla de equivalencias traduce el diagrama a AWS, Azure o Google Cloud.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <nav class="toc" aria-label="Secciones">
+    <a href="#componentes"><span>1</span>Componentes</a>
+    <a href="#relaciones"><span>2</span>Relaciones</a>
+    <a href="#reglas"><span>3</span>Reglas de composición</a>
+    <a href="#ejemplo"><span>4</span>Ejemplo</a>
+  </nav>
+
+  <section class="block" id="componentes">
+    <h2>Componentes</h2>
+    <div class="controls">
+      <label for="q">Buscar por nombre, clave o servicio de un proveedor</label>
+      <input id="q" type="search" placeholder="vector, cola, db.graph, Lambda, Cosmos DB…" autocomplete="off">
+      <div class="chips" id="famChips" role="group" aria-label="Filtrar por familia"></div>
+      <div class="chips" id="tierChips" role="group" aria-label="Filtrar por nivel"></div>
+    </div>
+    <div class="main">
+      <div id="list"></div>
+      <aside class="inspector" aria-live="polite">
+        <div class="big" id="big"></div>
+        <h3 id="iname"></h3>
+        <p id="idesc"></p>
+        <dl class="meta"><dt>Clave</dt><dd id="ikey"></dd><dt>Familia</dt><dd id="ifam"></dd><dt>Nivel</dt><dd id="itier"></dd></dl>
+        <div class="tr" id="itr" aria-label="Equivalencias por proveedor"></div>
+        <p class="note" id="inote" hidden></p>
+        <div class="btns">
+          <button class="btn" id="copySvg" type="button">Copiar SVG</button>
+          <button class="btn ghost" id="copyKey" type="button">Copiar clave</button>
+        </div>
+        <p class="status" id="status"></p>
+        <textarea id="buf" tabindex="-1" aria-hidden="true"></textarea>
+      </aside>
+    </div>
+  </section>
+
+  <section class="block" id="relaciones">
+    <h2>Relaciones</h2>
+    <p class="lede">Las flechas son la gramática del lenguaje. Cada una es una relación tipada: el trazo y la punta dicen qué significa, y el compilador deduce de ella permisos, red y recursos intermedios. El color pertenece a los componentes; las relaciones se distinguen solo por forma.</p>
+    <div class="rels" id="rels"></div>
+  </section>
+
+  <section class="block" id="reglas">
+    <h2>Reglas de composición</h2>
+    <ol class="rl">
+      <li>Una flecha expresa una sola relación y apunta en la dirección de la dependencia: el origen depende del destino.</li>
+      <li>La contención es espacial. Dibujar un componente dentro de <code>net.private</code>, <code>net.public</code> u <code>ops.account</code> define su red o su cuenta.</li>
+      <li>Para entrar desde fuera o desde una zona pública a una privada, la flecha debe pasar por <code>net.gateway</code> o <code>net.loadbalancer</code>.</li>
+      <li>Cada relación solo admite los orígenes y destinos de su ficha. Una conexión fuera de esa lista es un error de tipo.</li>
+      <li>Las propiedades van en una pastilla sobre la flecha. Las que no se escriben toman el valor por defecto del proveedor.</li>
+      <li>Un <code>rel.send</code> entre dos cómputos sin cola dibujada es válido: el compilador inserta la <code>msg.queue</code> y la muestra como implícita.</li>
+      <li>Los ciclos de <code>rel.call</code> y <code>rel.depends</code> son errores. Los ciclos asíncronos se permiten con advertencia.</li>
+      <li>Los componentes de nivel <em>notación</em> documentan el diseño pero no crean recursos.</li>
+    </ol>
+  </section>
+
+  <section class="block" id="ejemplo">
+    <h2 id="exTitle">Ejemplo</h2>
+    <p class="lede">El mismo diagrama compila a cualquier proveedor. Ninguna política de permisos se escribe a mano: todas salen de las flechas. El archivo fuente está en <code>spec/examples/</code>.</p>
+    <div class="ex">
+      <div class="diagram" id="diagram"></div>
+      <div class="derive">
+        <h3>Lo que deduce el compilador</h3>
+        <ul id="derive"></ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>Iconos originales, sin logotipos de proveedores. Los nombres de servicios son marcas de sus dueños y se usan solo como referencia. Código fuente y especificación en el repositorio del proyecto.</footer>
+</div>
+
+<script>
+const D = /*__NIMBO_DATA__*/null;
+const $ = id => document.getElementById(id);
+const fam = Object.fromEntries(D.families.map(f => [f.id, f]));
+const TIER = { core: 'Núcleo', extended: 'Extendido', notation: 'Notación' };
+const TIER_SHORT = { core: '', extended: 'EXT', notation: 'NOT' };
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+const svg = (body, stroke = 'currentColor') => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" fill="none" stroke="${stroke}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
+const famF = new Set(), tierF = new Set();
+let current = null;
+
+const count = t => D.components.filter(c => c.tier === t).length;
+$('stats').innerHTML = [`${D.components.length} componentes`, `${count('core')} en los ${D.providers.length} proveedores`, `${D.relations.length} relaciones`, D.providers.map(p => p.name).join(' · ')].map(s => `<span>${esc(s)}</span>`).join('');
+
+$('famChips').innerHTML = D.families.map(f => `<button type="button" class="chip" data-f="${f.id}" aria-pressed="false" style="--c:var(--f-${f.id})"><i></i>${esc(f.name)}<b>${D.components.filter(c => c.family === f.id).length}</b></button>`).join('');
+$('tierChips').innerHTML = Object.keys(TIER).map(t => `<button type="button" class="chip" data-t="${t}" aria-pressed="false">${TIER[t]}<b>${count(t)}</b></button>`).join('');
+function toggle(set, v, btn) { set.has(v) ? set.delete(v) : set.add(v); btn.setAttribute('aria-pressed', set.has(v)); render(); }
+$('famChips').addEventListener('click', e => { const b = e.target.closest('.chip'); if (b) toggle(famF, b.dataset.f, b); });
+$('tierChips').addEventListener('click', e => { const b = e.target.closest('.chip'); if (b) toggle(tierF, b.dataset.t, b); });
+
+function render() {
+  const q = norm($('q').value.trim());
+  const hit = c => !q || [c.name, c.key, c.description, ...Object.values(c.bindings)].some(v => v && norm(v).includes(q));
+  let html = '';
+  for (const f of D.families) {
+    if (famF.size && !famF.has(f.id)) continue;
+    const items = D.components.filter(c => c.family === f.id && (!tierF.size || tierF.has(c.tier)) && hit(c));
+    if (!items.length) continue;
+    html += `<section class="fam" style="--c:var(--f-${f.id})"><div class="famhead"><span class="sw"></span><h3>${esc(f.name)}</h3><small>${f.id}.* · ${items.length}</small></div><div class="grid">` +
+      items.map(c => `<button type="button" class="card" data-k="${c.key}" aria-current="${current?.key === c.key}">${TIER_SHORT[c.tier] ? `<span class="tier ${c.tier}" title="${TIER[c.tier]}">${TIER_SHORT[c.tier]}</span>` : ''}${svg(c.icon)}<span class="n">${esc(c.name)}</span><span class="k">${c.key}</span></button>`).join('') + '</div></section>';
+  }
+  $('list').innerHTML = html || '<p class="empty">Ningún componente coincide. Prueba con otra palabra o quita los filtros.</p>';
+}
+function select(key) {
+  current = D.components.find(c => c.key === key); if (!current) return;
+  const f = fam[current.family];
+  document.querySelector('.inspector').style.setProperty('--c', `var(--f-${f.id})`);
+  $('big').innerHTML = svg(current.icon);
+  $('iname').textContent = current.name;
+  $('idesc').textContent = current.description;
+  $('ikey').textContent = current.key;
+  $('ifam').textContent = f.name;
+  $('itier').textContent = TIER[current.tier];
+  $('itr').innerHTML = current.tier === 'notation'
+    ? '<div><b>—</b><span class="none">Elemento del lenguaje, no crea recursos.</span></div>'
+    : D.providers.map(p => `<div><b>${p.id.toUpperCase()}</b>${current.bindings[p.id] ? `<span>${esc(current.bindings[p.id])}</span>` : '<span class="none">Sin equivalente nativo</span>'}</div>`).join('');
+  $('inote').hidden = !current.note; $('inote').textContent = current.note || '';
+  $('status').textContent = '';
+  document.querySelectorAll('.card').forEach(c => c.setAttribute('aria-current', c.dataset.k === key));
+}
+async function copy(text, label) {
+  try { await navigator.clipboard.writeText(text); $('status').textContent = `${label} copiado.`; }
+  catch (e) { const b = $('buf'); b.value = text; b.select(); try { document.execCommand('copy'); $('status').textContent = `${label} copiado.`; } catch (_) { $('status').textContent = 'No se pudo copiar. Abre el archivo en la carpeta icons/ del repositorio.'; } }
+}
+$('list').addEventListener('click', e => { const c = e.target.closest('.card'); if (c) select(c.dataset.k); });
+$('q').addEventListener('input', render);
+$('copySvg').addEventListener('click', () => copy(svg(current.icon, fam[current.family].color.light).replace(' aria-hidden="true"', ''), 'SVG'));
+$('copyKey').addEventListener('click', () => copy(current.key, 'Clave'));
+render(); select('db.vector');
+
+$('rels').innerHTML = D.relations.map(r => `<article class="rel">${r.svg}
+  <div class="top"><h3>${esc(r.name)}</h3><span class="k">${r.key}</span></div>
+  <dl><dt>Significa</dt><dd>${esc(r.meaning)}</dd><dt>El compilador deduce</dt><dd>${esc(r.deduces)}</dd>
+  <dt>Desde</dt><dd><code>${r.from.map(esc).join(', ')}</code></dd><dt>Hacia</dt><dd><code>${r.to.map(esc).join(', ')}</code></dd></dl>
+  ${r.props.length ? `<div class="props">${r.props.map(p => `<span>${esc(p)}</span>`).join('')}</div>` : ''}</article>`).join('');
+
+if (D.example) {
+  const ex = D.example, nodes = Object.fromEntries(ex.nodes.map(n => [n.id, n]));
+  $('exTitle').textContent = `Ejemplo: ${ex.title.toLowerCase()}`;
+  $('diagram').innerHTML = ex.svg;
+  const by = r => ex.edges.filter(e => e.rel === r);
+  const list = [];
+  const pub = (ex.zones || []).filter(z => z.type === 'net.public').flatMap(z => z.contains);
+  if (pub.length) list.push(`<code>${pub.join('</code>, <code>')}</code> es la única entrada pública.`);
+  for (const e of by('rel.call')) list.push(`<code>${e.from}</code> puede invocar a <code>${e.to}</code>${e.props ? ` (${Object.entries(e.props).map(([k, v]) => `${k}: ${v}`).join(', ')})` : ''}.`);
+  for (const e of by('rel.write')) list.push(`<code>${e.from}</code> puede escribir en <code>${e.to}</code>.`);
+  for (const e of by('rel.read')) list.push(`<code>${e.from}</code> solo puede leer <code>${e.to}</code>.`);
+  for (const e of by('rel.send')) list.push(nodes[e.to].type === 'msg.queue' ? `<code>${e.from}</code> publica en <code>${e.to}</code>${nodes[e.to].props?.dlq ? ', que se crea con cola de fallidos' : ''}.` : `<code>${e.to}</code> consume <code>${e.from}</code>.`);
+  for (const e of by('rel.trust')) list.push(`<code>${e.from}</code> actúa con <code>${e.to}</code>.`);
+  for (const e of by('rel.observe')) list.push(`La telemetría de <code>${e.from}</code> se exporta a <code>${e.to}</code>.`);
+  list.push('Nada más tiene permisos. Lo que no tiene flecha, no está permitido.');
+  $('derive').innerHTML = list.map(s => `<li>${s}</li>`).join('');
+}
+</script>
+</body>
+</html>

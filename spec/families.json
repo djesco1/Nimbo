@@ -1,0 +1,92 @@
+[
+  {
+    "id": "compute",
+    "name": "Cómputo",
+    "color": {
+      "light": "#6B62D6",
+      "dark": "#A39CF0"
+    },
+    "description": "Donde corre el código: funciones, contenedores, máquinas y orquestación."
+  },
+  {
+    "id": "db",
+    "name": "Bases de datos",
+    "color": {
+      "light": "#2F7FD0",
+      "dark": "#79B2EE"
+    },
+    "description": "Motores administrados por modelo de datos."
+  },
+  {
+    "id": "storage",
+    "name": "Almacenamiento",
+    "color": {
+      "light": "#A86A10",
+      "dark": "#E2A447"
+    },
+    "description": "Objetos, discos, archivos, archivo frío, respaldo y transferencia."
+  },
+  {
+    "id": "analytics",
+    "name": "Analítica",
+    "color": {
+      "light": "#4E8418",
+      "dark": "#93C457"
+    },
+    "description": "Warehouse, pipelines, procesamiento y gobierno de datos."
+  },
+  {
+    "id": "ai",
+    "name": "IA y ML",
+    "color": {
+      "light": "#C2427A",
+      "dark": "#EE8FB4"
+    },
+    "description": "Modelos fundacionales, plataforma de ML y APIs de IA listas."
+  },
+  {
+    "id": "msg",
+    "name": "Mensajería e integración",
+    "color": {
+      "light": "#C9502A",
+      "dark": "#F0936E"
+    },
+    "description": "Colas, eventos, streams y conectores."
+  },
+  {
+    "id": "net",
+    "name": "Red",
+    "color": {
+      "light": "#14896A",
+      "dark": "#55C7A0"
+    },
+    "description": "Zonas, entrada, distribución y conectividad."
+  },
+  {
+    "id": "sec",
+    "name": "Seguridad",
+    "color": {
+      "light": "#CF3B3A",
+      "dark": "#F08585"
+    },
+    "description": "Identidad, secretos, cifrado, perímetro y cumplimiento."
+  },
+  {
+    "id": "ops",
+    "name": "Operación y DevOps",
+    "color": {
+      "light": "#6F6D66",
+      "dark": "#B0AEA6"
+    },
+    "description": "Observabilidad, entrega, configuración y costos."
+  },
+  {
+    "id": "actor",
+    "name": "Actores externos",
+    "color": {
+      "light": "#2A2E36",
+      "dark": "#D8DCE4"
+    },
+    "description": "Lo que está fuera del sistema y lo usa."
+  }
+]

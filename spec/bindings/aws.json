@@ -1,0 +1,295 @@
+{
+  "provider": "aws",
+  "name": "Amazon Web Services",
+  "reviewed": "2026-10",
+  "services": {
+    "compute.function": {
+      "service": "AWS Lambda"
+    },
+    "compute.container": {
+      "service": "Amazon ECS en AWS Fargate"
+    },
+    "compute.vm": {
+      "service": "Amazon EC2"
+    },
+    "compute.autoscale": {
+      "service": "Amazon EC2 Auto Scaling"
+    },
+    "compute.cluster": {
+      "service": "Amazon EKS"
+    },
+    "compute.webapp": {
+      "service": "AWS Elastic Beanstalk"
+    },
+    "compute.static": {
+      "service": "AWS Amplify Hosting"
+    },
+    "compute.batch": {
+      "service": "AWS Batch"
+    },
+    "compute.workflow": {
+      "service": "AWS Step Functions"
+    },
+    "compute.schedule": {
+      "service": "Amazon EventBridge Scheduler"
+    },
+    "compute.accelerator": {
+      "service": "Instancias EC2 con GPU, AWS Trainium e Inferentia"
+    },
+    "compute.edge": {
+      "service": "Amazon CloudFront Functions / Lambda@Edge"
+    },
+    "compute.hybrid": {
+      "service": "AWS Outposts"
+    },
+    "db.relational": {
+      "service": "Amazon RDS / Amazon Aurora"
+    },
+    "db.document": {
+      "service": "Amazon DocumentDB"
+    },
+    "db.keyvalue": {
+      "service": "Amazon DynamoDB"
+    },
+    "db.widecolumn": {
+      "service": "Amazon Keyspaces"
+    },
+    "db.graph": {
+      "service": "Amazon Neptune"
+    },
+    "db.vector": {
+      "service": "Amazon S3 Vectors / OpenSearch Service"
+    },
+    "db.cache": {
+      "service": "Amazon ElastiCache / MemoryDB"
+    },
+    "db.timeseries": {
+      "service": "Amazon Timestream"
+    },
+    "db.search": {
+      "service": "Amazon OpenSearch Service"
+    },
+    "db.migration": {
+      "service": "AWS Database Migration Service"
+    },
+    "storage.object": {
+      "service": "Amazon S3"
+    },
+    "storage.block": {
+      "service": "Amazon EBS"
+    },
+    "storage.file": {
+      "service": "Amazon EFS / Amazon FSx"
+    },
+    "storage.archive": {
+      "service": "Amazon S3 Glacier"
+    },
+    "storage.backup": {
+      "service": "AWS Backup"
+    },
+    "storage.lake": {
+      "service": "Amazon S3 + AWS Lake Formation"
+    },
+    "storage.transfer": {
+      "service": "AWS DataSync / AWS Transfer Family"
+    },
+    "analytics.warehouse": {
+      "service": "Amazon Redshift"
+    },
+    "analytics.etl": {
+      "service": "AWS Glue"
+    },
+    "analytics.streaming": {
+      "service": "Amazon Managed Service for Apache Flink"
+    },
+    "analytics.distributed": {
+      "service": "Amazon EMR"
+    },
+    "analytics.query": {
+      "service": "Amazon Athena"
+    },
+    "analytics.bi": {
+      "service": "Amazon Quick Sight"
+    },
+    "analytics.catalog": {
+      "service": "AWS Glue Data Catalog / Amazon SageMaker Catalog"
+    },
+    "analytics.lineage": {
+      "service": "Amazon SageMaker Catalog (linaje)"
+    },
+    "analytics.quality": {
+      "service": "AWS Glue Data Quality"
+    },
+    "ai.llm": {
+      "service": "Amazon Bedrock"
+    },
+    "ai.agent": {
+      "service": "Amazon Bedrock AgentCore"
+    },
+    "ai.knowledge": {
+      "service": "Amazon Bedrock Knowledge Bases"
+    },
+    "ai.guardrail": {
+      "service": "Amazon Bedrock Guardrails"
+    },
+    "ai.model": {
+      "service": "Amazon SageMaker AI Model Registry"
+    },
+    "ai.training": {
+      "service": "Amazon SageMaker AI (entrenamiento)"
+    },
+    "ai.inference": {
+      "service": "Endpoints de Amazon SageMaker AI"
+    },
+    "ai.pipeline": {
+      "service": "Amazon SageMaker Pipelines"
+    },
+    "ai.features": {
+      "service": "Amazon SageMaker Feature Store"
+    },
+    "ai.notebook": {
+      "service": "Amazon SageMaker Unified Studio"
+    },
+    "ai.vision": {
+      "service": "Amazon Rekognition"
+    },
+    "ai.speech": {
+      "service": "Amazon Transcribe / Amazon Polly"
+    },
+    "ai.nlp": {
+      "service": "Amazon Comprehend"
+    },
+    "ai.translate": {
+      "service": "Amazon Translate"
+    },
+    "ai.document": {
+      "service": "Amazon Textract"
+    },
+    "msg.queue": {
+      "service": "Amazon SQS"
+    },
+    "msg.topic": {
+      "service": "Amazon SNS"
+    },
+    "msg.bus": {
+      "service": "Amazon EventBridge"
+    },
+    "msg.stream": {
+      "service": "Amazon Kinesis Data Streams"
+    },
+    "msg.kafka": {
+      "service": "Amazon MSK"
+    },
+    "msg.notify": {
+      "service": "Amazon SNS (push móvil)"
+    },
+    "msg.connector": {
+      "service": "Amazon AppFlow"
+    },
+    "msg.email": {
+      "service": "Amazon SES"
+    },
+    "msg.iot": {
+      "service": "AWS IoT Core"
+    },
+    "net.private": {
+      "service": "Amazon VPC"
+    },
+    "net.public": {
+      "service": "Subred pública de VPC"
+    },
+    "net.gateway": {
+      "service": "Amazon API Gateway"
+    },
+    "net.loadbalancer": {
+      "service": "Elastic Load Balancing"
+    },
+    "net.cdn": {
+      "service": "Amazon CloudFront"
+    },
+    "net.dns": {
+      "service": "Amazon Route 53"
+    },
+    "net.nat": {
+      "service": "NAT Gateway"
+    },
+    "net.privatelink": {
+      "service": "AWS PrivateLink"
+    },
+    "net.peering": {
+      "service": "VPC Peering / AWS Transit Gateway"
+    },
+    "net.vpn": {
+      "service": "AWS Site-to-Site VPN"
+    },
+    "net.dedicated": {
+      "service": "AWS Direct Connect"
+    },
+    "net.mesh": {
+      "service": "Amazon VPC Lattice / ECS Service Connect"
+    },
+    "sec.identity": {
+      "service": "AWS IAM / IAM Identity Center"
+    },
+    "sec.customer": {
+      "service": "Amazon Cognito"
+    },
+    "sec.vault": {
+      "service": "AWS Secrets Manager"
+    },
+    "sec.kms": {
+      "service": "AWS KMS"
+    },
+    "sec.certificate": {
+      "service": "AWS Certificate Manager"
+    },
+    "sec.firewall": {
+      "service": "AWS Network Firewall / Security Groups"
+    },
+    "sec.protection": {
+      "service": "AWS WAF / AWS Shield"
+    },
+    "sec.policy": {
+      "service": "AWS Organizations (SCP)"
+    },
+    "sec.audit": {
+      "service": "AWS CloudTrail"
+    },
+    "sec.posture": {
+      "service": "AWS Security Hub / Amazon GuardDuty"
+    },
+    "ops.metrics": {
+      "service": "Amazon CloudWatch"
+    },
+    "ops.logs": {
+      "service": "Amazon CloudWatch Logs"
+    },
+    "ops.traces": {
+      "service": "AWS X-Ray / CloudWatch Application Signals"
+    },
+    "ops.alerts": {
+      "service": "Alarmas de Amazon CloudWatch"
+    },
+    "ops.cicd": {
+      "service": "AWS CodePipeline / AWS CodeBuild"
+    },
+    "ops.registry": {
+      "service": "Amazon ECR"
+    },
+    "ops.repo": {
+      "service": "AWS CodeCommit"
+    },
+    "ops.iac": {
+      "service": "AWS CloudFormation"
+    },
+    "ops.config": {
+      "service": "AWS AppConfig / Parameter Store"
+    },
+    "ops.cost": {
+      "service": "AWS Cost Explorer / AWS Budgets"
+    },
+    "ops.account": {
+      "service": "Cuenta de AWS (AWS Organizations)"
+    }
+  }
+}

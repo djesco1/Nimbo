@@ -1,0 +1,263 @@
+[
+  {
+    "key": "rel.call",
+    "name": "Llamada síncrona",
+    "style": {
+      "head": "tri"
+    },
+    "meaning": "El origen espera la respuesta del destino.",
+    "deduces": "Permiso de invocación, ruta de red, timeout y reintentos.",
+    "from": [
+      "actor.*",
+      "compute.*",
+      "net.gateway",
+      "net.loadbalancer",
+      "ai.agent"
+    ],
+    "to": [
+      "compute.*",
+      "net.gateway",
+      "net.loadbalancer",
+      "ai.*",
+      "msg.api",
+      "actor.external"
+    ],
+    "props": [
+      "timeout",
+      "retry",
+      "auth"
+    ]
+  },
+  {
+    "key": "rel.send",
+    "name": "Mensaje asíncrono",
+    "style": {
+      "dash": "7 5",
+      "head": "chev"
+    },
+    "meaning": "El origen deja un mensaje y sigue. Un solo consumidor lo procesa.",
+    "deduces": "Cola intermedia si no está dibujada, cola de fallidos y permisos de publicar y consumir.",
+    "from": [
+      "compute.*",
+      "msg.queue",
+      "ai.agent"
+    ],
+    "to": [
+      "msg.queue",
+      "compute.*"
+    ],
+    "props": [
+      "delivery",
+      "order",
+      "dlq"
+    ]
+  },
+  {
+    "key": "rel.emit",
+    "name": "Evento",
+    "style": {
+      "dash": "7 5",
+      "head": "dchev"
+    },
+    "meaning": "El origen publica un hecho. Cualquier número de suscriptores lo recibe.",
+    "deduces": "Topic o bus, una suscripción por destino, filtros y esquema del evento.",
+    "from": [
+      "compute.*",
+      "db.*",
+      "storage.*",
+      "msg.topic",
+      "msg.bus",
+      "msg.iot",
+      "ops.alerts"
+    ],
+    "to": [
+      "msg.topic",
+      "msg.bus",
+      "compute.*",
+      "msg.queue",
+      "msg.webhook",
+      "actor.*"
+    ],
+    "props": [
+      "schema",
+      "filter"
+    ]
+  },
+  {
+    "key": "rel.flow",
+    "name": "Flujo de datos",
+    "style": {
+      "double": true,
+      "head": "chev"
+    },
+    "meaning": "Datos que se mueven en volumen, por lotes o en stream.",
+    "deduces": "Pipeline, cifrado en tránsito, formato y capacidad.",
+    "from": [
+      "actor.iot",
+      "db.*",
+      "storage.*",
+      "msg.stream",
+      "msg.kafka",
+      "msg.iot",
+      "analytics.*",
+      "compute.*"
+    ],
+    "to": [
+      "analytics.*",
+      "storage.*",
+      "db.*",
+      "msg.stream",
+      "msg.kafka",
+      "ai.training",
+      "ai.features"
+    ],
+    "props": [
+      "mode",
+      "format",
+      "schedule"
+    ]
+  },
+  {
+    "key": "rel.read",
+    "name": "Lectura",
+    "style": {
+      "head": "circ"
+    },
+    "meaning": "El origen consulta el destino sin modificarlo.",
+    "deduces": "Permiso de solo lectura y réplicas de lectura si la carga lo pide.",
+    "from": [
+      "compute.*",
+      "analytics.*",
+      "ai.*"
+    ],
+    "to": [
+      "db.*",
+      "storage.*",
+      "sec.vault",
+      "sec.kms",
+      "ops.config",
+      "ai.knowledge",
+      "ai.features",
+      "analytics.warehouse"
+    ],
+    "props": [
+      "consistency"
+    ]
+  },
+  {
+    "key": "rel.write",
+    "name": "Escritura",
+    "style": {
+      "head": "sq"
+    },
+    "meaning": "El origen crea o modifica datos en el destino.",
+    "deduces": "Permiso de escritura, auditoría y respaldo del destino.",
+    "from": [
+      "compute.*",
+      "analytics.*",
+      "ai.*"
+    ],
+    "to": [
+      "db.*",
+      "storage.*",
+      "analytics.warehouse",
+      "ai.knowledge",
+      "ai.features"
+    ],
+    "props": [
+      "audit",
+      "backup"
+    ]
+  },
+  {
+    "key": "rel.trust",
+    "name": "Confianza",
+    "style": {
+      "dash": "9 4 2 4",
+      "head": "dia"
+    },
+    "meaning": "El origen actúa con la identidad o el rol del destino.",
+    "deduces": "Rol o cuenta de servicio, asunción de rol y federación entre cuentas.",
+    "from": [
+      "compute.*",
+      "ai.*",
+      "analytics.*",
+      "ops.cicd",
+      "actor.*"
+    ],
+    "to": [
+      "sec.identity",
+      "sec.customer"
+    ],
+    "props": [
+      "scope",
+      "duration"
+    ]
+  },
+  {
+    "key": "rel.replicate",
+    "name": "Replicación",
+    "style": {
+      "double": true,
+      "head": "chev",
+      "tail": "chev"
+    },
+    "meaning": "El mismo dato se mantiene en dos lugares.",
+    "deduces": "Réplica entre zonas o regiones, objetivo de RPO y failover.",
+    "from": [
+      "db.*",
+      "storage.*"
+    ],
+    "to": [
+      "db.*",
+      "storage.*"
+    ],
+    "props": [
+      "rpo",
+      "mode"
+    ]
+  },
+  {
+    "key": "rel.observe",
+    "name": "Observación",
+    "style": {
+      "dash": "0.1 6",
+      "cap": "round",
+      "w": 2.5,
+      "head": "chev"
+    },
+    "meaning": "El origen envía telemetría al destino.",
+    "deduces": "Exportación de logs, métricas o trazas y su retención.",
+    "from": [
+      "*"
+    ],
+    "to": [
+      "ops.metrics",
+      "ops.logs",
+      "ops.traces",
+      "sec.audit"
+    ],
+    "props": [
+      "signals",
+      "retention"
+    ]
+  },
+  {
+    "key": "rel.depends",
+    "name": "Dependencia",
+    "style": {
+      "w": 1.25,
+      "muted": true,
+      "head": "htri"
+    },
+    "meaning": "El origen necesita que el destino exista antes. No hay tráfico.",
+    "deduces": "Orden de despliegue y de destrucción.",
+    "from": [
+      "*"
+    ],
+    "to": [
+      "*"
+    ],
+    "props": []
+  }
+]

@@ -1,0 +1,295 @@
+{
+  "provider": "azure",
+  "name": "Microsoft Azure",
+  "reviewed": "2026-10",
+  "services": {
+    "compute.function": {
+      "service": "Azure Functions"
+    },
+    "compute.container": {
+      "service": "Azure Container Apps"
+    },
+    "compute.vm": {
+      "service": "Azure Virtual Machines"
+    },
+    "compute.autoscale": {
+      "service": "Azure Virtual Machine Scale Sets"
+    },
+    "compute.cluster": {
+      "service": "Azure Kubernetes Service (AKS)"
+    },
+    "compute.webapp": {
+      "service": "Azure App Service"
+    },
+    "compute.static": {
+      "service": "Azure Static Web Apps"
+    },
+    "compute.batch": {
+      "service": "Azure Batch"
+    },
+    "compute.workflow": {
+      "service": "Azure Logic Apps / Durable Functions"
+    },
+    "compute.schedule": {
+      "service": "Disparador de temporizador en Azure Functions / recurrencia en Logic Apps"
+    },
+    "compute.accelerator": {
+      "service": "Máquinas virtuales serie N"
+    },
+    "compute.edge": {
+      "service": "Motor de reglas de Azure Front Door (sin código propio)"
+    },
+    "compute.hybrid": {
+      "service": "Azure Local"
+    },
+    "db.relational": {
+      "service": "Azure SQL Database / Azure Database for PostgreSQL y MySQL"
+    },
+    "db.document": {
+      "service": "Azure Cosmos DB (NoSQL / MongoDB)"
+    },
+    "db.keyvalue": {
+      "service": "Azure Cosmos DB (Table) / Table Storage"
+    },
+    "db.widecolumn": {
+      "service": "Azure Managed Instance for Apache Cassandra"
+    },
+    "db.graph": {
+      "service": "Azure Cosmos DB for Apache Gremlin"
+    },
+    "db.vector": {
+      "service": "Azure AI Search / Cosmos DB (vectores)"
+    },
+    "db.cache": {
+      "service": "Azure Managed Redis"
+    },
+    "db.timeseries": {
+      "service": "Azure Data Explorer"
+    },
+    "db.search": {
+      "service": "Azure AI Search"
+    },
+    "db.migration": {
+      "service": "Azure Database Migration Service"
+    },
+    "storage.object": {
+      "service": "Azure Blob Storage"
+    },
+    "storage.block": {
+      "service": "Azure Managed Disks"
+    },
+    "storage.file": {
+      "service": "Azure Files / Azure NetApp Files"
+    },
+    "storage.archive": {
+      "service": "Nivel Archive de Blob Storage"
+    },
+    "storage.backup": {
+      "service": "Azure Backup"
+    },
+    "storage.lake": {
+      "service": "Azure Data Lake Storage / OneLake"
+    },
+    "storage.transfer": {
+      "service": "Azure Storage Mover / Azure Data Box"
+    },
+    "analytics.warehouse": {
+      "service": "Microsoft Fabric Data Warehouse / Azure Synapse Analytics"
+    },
+    "analytics.etl": {
+      "service": "Azure Data Factory"
+    },
+    "analytics.streaming": {
+      "service": "Azure Stream Analytics"
+    },
+    "analytics.distributed": {
+      "service": "Azure Databricks / Azure HDInsight"
+    },
+    "analytics.query": {
+      "service": "Microsoft Fabric / Synapse SQL sin servidor"
+    },
+    "analytics.bi": {
+      "service": "Power BI"
+    },
+    "analytics.catalog": {
+      "service": "Microsoft Purview"
+    },
+    "analytics.lineage": {
+      "service": "Microsoft Purview (linaje)"
+    },
+    "analytics.quality": {
+      "service": "Microsoft Purview (calidad de datos)"
+    },
+    "ai.llm": {
+      "service": "Microsoft Foundry"
+    },
+    "ai.agent": {
+      "service": "Foundry Agent Service"
+    },
+    "ai.knowledge": {
+      "service": "Azure AI Search (recuperación agéntica) / Foundry"
+    },
+    "ai.guardrail": {
+      "service": "Azure AI Content Safety"
+    },
+    "ai.model": {
+      "service": "Registros de Azure Machine Learning"
+    },
+    "ai.training": {
+      "service": "Azure Machine Learning"
+    },
+    "ai.inference": {
+      "service": "Endpoints en línea de Azure Machine Learning"
+    },
+    "ai.pipeline": {
+      "service": "Pipelines de Azure Machine Learning"
+    },
+    "ai.features": {
+      "service": "Feature store de Azure Machine Learning"
+    },
+    "ai.notebook": {
+      "service": "Notebooks de Azure Machine Learning"
+    },
+    "ai.vision": {
+      "service": "Azure AI Vision"
+    },
+    "ai.speech": {
+      "service": "Azure AI Speech"
+    },
+    "ai.nlp": {
+      "service": "Azure AI Language"
+    },
+    "ai.translate": {
+      "service": "Azure AI Translator"
+    },
+    "ai.document": {
+      "service": "Azure AI Document Intelligence"
+    },
+    "msg.queue": {
+      "service": "Azure Service Bus (colas) / Queue Storage"
+    },
+    "msg.topic": {
+      "service": "Azure Service Bus (topics)"
+    },
+    "msg.bus": {
+      "service": "Azure Event Grid"
+    },
+    "msg.stream": {
+      "service": "Azure Event Hubs"
+    },
+    "msg.kafka": {
+      "service": "Azure Event Hubs (endpoint Kafka)"
+    },
+    "msg.notify": {
+      "service": "Azure Notification Hubs"
+    },
+    "msg.connector": {
+      "service": "Conectores de Azure Logic Apps"
+    },
+    "msg.email": {
+      "service": "Azure Communication Services (correo)"
+    },
+    "msg.iot": {
+      "service": "Azure IoT Hub"
+    },
+    "net.private": {
+      "service": "Azure Virtual Network"
+    },
+    "net.public": {
+      "service": "Subred con IP pública"
+    },
+    "net.gateway": {
+      "service": "Azure API Management"
+    },
+    "net.loadbalancer": {
+      "service": "Azure Load Balancer / Application Gateway"
+    },
+    "net.cdn": {
+      "service": "Azure Front Door"
+    },
+    "net.dns": {
+      "service": "Azure DNS"
+    },
+    "net.nat": {
+      "service": "Azure NAT Gateway"
+    },
+    "net.privatelink": {
+      "service": "Azure Private Link"
+    },
+    "net.peering": {
+      "service": "VNet peering / Azure Virtual WAN"
+    },
+    "net.vpn": {
+      "service": "Azure VPN Gateway"
+    },
+    "net.dedicated": {
+      "service": "Azure ExpressRoute"
+    },
+    "net.mesh": {
+      "service": "Complemento Istio para AKS"
+    },
+    "sec.identity": {
+      "service": "Microsoft Entra ID + Azure RBAC"
+    },
+    "sec.customer": {
+      "service": "Microsoft Entra External ID"
+    },
+    "sec.vault": {
+      "service": "Azure Key Vault (secretos)"
+    },
+    "sec.kms": {
+      "service": "Azure Key Vault (llaves) / Managed HSM"
+    },
+    "sec.certificate": {
+      "service": "Azure Key Vault (certificados)"
+    },
+    "sec.firewall": {
+      "service": "Azure Firewall / Network Security Groups"
+    },
+    "sec.protection": {
+      "service": "Azure Web Application Firewall / Azure DDoS Protection"
+    },
+    "sec.policy": {
+      "service": "Azure Policy"
+    },
+    "sec.audit": {
+      "service": "Registro de actividad de Azure"
+    },
+    "sec.posture": {
+      "service": "Microsoft Defender for Cloud"
+    },
+    "ops.metrics": {
+      "service": "Azure Monitor (métricas)"
+    },
+    "ops.logs": {
+      "service": "Azure Monitor Logs (Log Analytics)"
+    },
+    "ops.traces": {
+      "service": "Application Insights"
+    },
+    "ops.alerts": {
+      "service": "Alertas de Azure Monitor"
+    },
+    "ops.cicd": {
+      "service": "Azure Pipelines"
+    },
+    "ops.registry": {
+      "service": "Azure Container Registry"
+    },
+    "ops.repo": {
+      "service": "Azure Repos"
+    },
+    "ops.iac": {
+      "service": "Bicep / Azure Resource Manager"
+    },
+    "ops.config": {
+      "service": "Azure App Configuration"
+    },
+    "ops.cost": {
+      "service": "Microsoft Cost Management"
+    },
+    "ops.account": {
+      "service": "Suscripción y grupo de administración"
+    }
+  }
+}

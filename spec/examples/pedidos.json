@@ -1,0 +1,165 @@
+{
+  "name": "pedidos",
+  "title": "Sistema de pedidos",
+  "language": "nimbo/0.1",
+  "zones": [
+    {
+      "id": "publica",
+      "type": "net.public",
+      "contains": [
+        "api"
+      ]
+    },
+    {
+      "id": "privada",
+      "type": "net.private",
+      "contains": [
+        "crear_pedido",
+        "pedidos_db",
+        "pedidos_nuevos",
+        "facturar",
+        "recibos",
+        "rol_facturacion"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cliente",
+      "type": "actor.user"
+    },
+    {
+      "id": "api",
+      "type": "net.gateway",
+      "props": {
+        "protocol": "https"
+      }
+    },
+    {
+      "id": "crear_pedido",
+      "type": "compute.function"
+    },
+    {
+      "id": "pedidos_db",
+      "type": "db.relational",
+      "props": {
+        "consistency": "strong"
+      }
+    },
+    {
+      "id": "rol_facturacion",
+      "type": "sec.identity"
+    },
+    {
+      "id": "metricas",
+      "type": "ops.metrics"
+    },
+    {
+      "id": "pedidos_nuevos",
+      "type": "msg.queue",
+      "props": {
+        "dlq": true
+      }
+    },
+    {
+      "id": "facturar",
+      "type": "compute.function"
+    },
+    {
+      "id": "recibos",
+      "type": "storage.object"
+    }
+  ],
+  "edges": [
+    {
+      "rel": "rel.call",
+      "from": "cliente",
+      "to": "api",
+      "props": {
+        "auth": "https"
+      }
+    },
+    {
+      "rel": "rel.call",
+      "from": "api",
+      "to": "crear_pedido",
+      "props": {
+        "timeout": "3s",
+        "retry": 2
+      }
+    },
+    {
+      "rel": "rel.write",
+      "from": "crear_pedido",
+      "to": "pedidos_db"
+    },
+    {
+      "rel": "rel.send",
+      "from": "crear_pedido",
+      "to": "pedidos_nuevos"
+    },
+    {
+      "rel": "rel.send",
+      "from": "pedidos_nuevos",
+      "to": "facturar"
+    },
+    {
+      "rel": "rel.read",
+      "from": "facturar",
+      "to": "pedidos_db"
+    },
+    {
+      "rel": "rel.write",
+      "from": "facturar",
+      "to": "recibos"
+    },
+    {
+      "rel": "rel.trust",
+      "from": "facturar",
+      "to": "rol_facturacion"
+    },
+    {
+      "rel": "rel.observe",
+      "from": "crear_pedido",
+      "to": "metricas"
+    }
+  ],
+  "layout": {
+    "cliente": [
+      60,
+      140
+    ],
+    "api": [
+      200,
+      140
+    ],
+    "crear_pedido": [
+      360,
+      140
+    ],
+    "pedidos_db": [
+      540,
+      140
+    ],
+    "rol_facturacion": [
+      700,
+      140
+    ],
+    "metricas": [
+      200,
+      290
+    ],
+    "pedidos_nuevos": [
+      360,
+      290
+    ],
+    "facturar": [
+      540,
+      290
+    ],
+    "recibos": [
+      700,
+      290
+    ]
+  }
+}

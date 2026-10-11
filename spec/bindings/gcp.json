@@ -1,0 +1,283 @@
+{
+  "provider": "gcp",
+  "name": "Google Cloud",
+  "reviewed": "2026-10",
+  "services": {
+    "compute.function": {
+      "service": "Cloud Run functions"
+    },
+    "compute.container": {
+      "service": "Cloud Run"
+    },
+    "compute.vm": {
+      "service": "Compute Engine"
+    },
+    "compute.autoscale": {
+      "service": "Managed Instance Groups"
+    },
+    "compute.cluster": {
+      "service": "Google Kubernetes Engine (GKE)"
+    },
+    "compute.webapp": {
+      "service": "App Engine"
+    },
+    "compute.static": {
+      "service": "Firebase Hosting"
+    },
+    "compute.batch": {
+      "service": "Batch"
+    },
+    "compute.workflow": {
+      "service": "Workflows"
+    },
+    "compute.schedule": {
+      "service": "Cloud Scheduler"
+    },
+    "compute.accelerator": {
+      "service": "GPU y Cloud TPU"
+    },
+    "compute.hybrid": {
+      "service": "Google Distributed Cloud"
+    },
+    "db.relational": {
+      "service": "Cloud SQL / AlloyDB"
+    },
+    "db.document": {
+      "service": "Firestore"
+    },
+    "db.keyvalue": {
+      "service": "Bigtable / Firestore"
+    },
+    "db.widecolumn": {
+      "service": "Bigtable"
+    },
+    "db.graph": {
+      "service": "Spanner Graph"
+    },
+    "db.vector": {
+      "service": "Vertex AI Vector Search / AlloyDB (pgvector)"
+    },
+    "db.cache": {
+      "service": "Memorystore"
+    },
+    "db.search": {
+      "service": "Vertex AI Search"
+    },
+    "db.migration": {
+      "service": "Database Migration Service"
+    },
+    "storage.object": {
+      "service": "Cloud Storage"
+    },
+    "storage.block": {
+      "service": "Persistent Disk / Hyperdisk"
+    },
+    "storage.file": {
+      "service": "Filestore"
+    },
+    "storage.archive": {
+      "service": "Clase Archive de Cloud Storage"
+    },
+    "storage.backup": {
+      "service": "Backup and DR Service"
+    },
+    "storage.lake": {
+      "service": "Cloud Storage + BigLake"
+    },
+    "storage.transfer": {
+      "service": "Storage Transfer Service / Transfer Appliance"
+    },
+    "analytics.warehouse": {
+      "service": "BigQuery"
+    },
+    "analytics.etl": {
+      "service": "Dataflow / Cloud Data Fusion"
+    },
+    "analytics.streaming": {
+      "service": "Dataflow"
+    },
+    "analytics.distributed": {
+      "service": "Dataproc"
+    },
+    "analytics.query": {
+      "service": "BigQuery (tablas externas y BigLake)"
+    },
+    "analytics.bi": {
+      "service": "Looker / Looker Studio"
+    },
+    "analytics.catalog": {
+      "service": "Dataplex Universal Catalog"
+    },
+    "analytics.lineage": {
+      "service": "Dataplex (linaje de datos)"
+    },
+    "analytics.quality": {
+      "service": "Dataplex (calidad de datos)"
+    },
+    "ai.llm": {
+      "service": "Vertex AI (Gemini y Model Garden)"
+    },
+    "ai.agent": {
+      "service": "Vertex AI Agent Engine"
+    },
+    "ai.knowledge": {
+      "service": "Vertex AI RAG Engine"
+    },
+    "ai.guardrail": {
+      "service": "Model Armor"
+    },
+    "ai.model": {
+      "service": "Vertex AI Model Registry"
+    },
+    "ai.training": {
+      "service": "Vertex AI Training"
+    },
+    "ai.inference": {
+      "service": "Endpoints de Vertex AI"
+    },
+    "ai.pipeline": {
+      "service": "Vertex AI Pipelines"
+    },
+    "ai.features": {
+      "service": "Vertex AI Feature Store"
+    },
+    "ai.notebook": {
+      "service": "Vertex AI Workbench / Colab Enterprise"
+    },
+    "ai.vision": {
+      "service": "Cloud Vision API"
+    },
+    "ai.speech": {
+      "service": "Speech-to-Text / Text-to-Speech"
+    },
+    "ai.nlp": {
+      "service": "Cloud Natural Language API"
+    },
+    "ai.translate": {
+      "service": "Cloud Translation"
+    },
+    "ai.document": {
+      "service": "Document AI"
+    },
+    "msg.queue": {
+      "service": "Cloud Tasks / Pub/Sub (suscripción pull)"
+    },
+    "msg.topic": {
+      "service": "Pub/Sub"
+    },
+    "msg.bus": {
+      "service": "Eventarc"
+    },
+    "msg.stream": {
+      "service": "Pub/Sub (con orden por clave)"
+    },
+    "msg.kafka": {
+      "service": "Managed Service for Apache Kafka"
+    },
+    "msg.notify": {
+      "service": "Firebase Cloud Messaging"
+    },
+    "msg.connector": {
+      "service": "Application Integration"
+    },
+    "net.private": {
+      "service": "VPC"
+    },
+    "net.public": {
+      "service": "Subred con IP externa"
+    },
+    "net.gateway": {
+      "service": "API Gateway / Apigee"
+    },
+    "net.loadbalancer": {
+      "service": "Cloud Load Balancing"
+    },
+    "net.cdn": {
+      "service": "Cloud CDN"
+    },
+    "net.dns": {
+      "service": "Cloud DNS"
+    },
+    "net.nat": {
+      "service": "Cloud NAT"
+    },
+    "net.privatelink": {
+      "service": "Private Service Connect"
+    },
+    "net.peering": {
+      "service": "VPC Network Peering / Network Connectivity Center"
+    },
+    "net.vpn": {
+      "service": "Cloud VPN"
+    },
+    "net.dedicated": {
+      "service": "Cloud Interconnect"
+    },
+    "net.mesh": {
+      "service": "Cloud Service Mesh"
+    },
+    "sec.identity": {
+      "service": "Cloud IAM"
+    },
+    "sec.customer": {
+      "service": "Identity Platform"
+    },
+    "sec.vault": {
+      "service": "Secret Manager"
+    },
+    "sec.kms": {
+      "service": "Cloud KMS"
+    },
+    "sec.certificate": {
+      "service": "Certificate Manager"
+    },
+    "sec.firewall": {
+      "service": "Cloud NGFW / reglas de firewall de VPC"
+    },
+    "sec.protection": {
+      "service": "Google Cloud Armor"
+    },
+    "sec.policy": {
+      "service": "Organization Policy Service"
+    },
+    "sec.audit": {
+      "service": "Cloud Audit Logs"
+    },
+    "sec.posture": {
+      "service": "Security Command Center"
+    },
+    "ops.metrics": {
+      "service": "Cloud Monitoring"
+    },
+    "ops.logs": {
+      "service": "Cloud Logging"
+    },
+    "ops.traces": {
+      "service": "Cloud Trace"
+    },
+    "ops.alerts": {
+      "service": "Alertas de Cloud Monitoring"
+    },
+    "ops.cicd": {
+      "service": "Cloud Build / Cloud Deploy"
+    },
+    "ops.registry": {
+      "service": "Artifact Registry"
+    },
+    "ops.repo": {
+      "service": "Secure Source Manager"
+    },
+    "ops.iac": {
+      "service": "Infrastructure Manager (Terraform)"
+    },
+    "ops.config": {
+      "service": "Parameter Manager"
+    },
+    "ops.cost": {
+      "service": "Cloud Billing (informes y presupuestos)"
+    },
+    "ops.account": {
+      "service": "Proyecto y carpeta de Resource Manager"
+    }
+  }
+}

@@ -1,0 +1,850 @@
+[
+  {
+    "key": "compute.function",
+    "name": "Función",
+    "family": "compute",
+    "tier": "core",
+    "description": "Código que corre por evento o petición, sin servidores que administrar.",
+    "icon": "<rect x=\"8\" y=\"8\" width=\"28\" height=\"28\" rx=\"5\"/><path d=\"M24 13L17 23H23L20 31L27 21H21Z\"/>",
+    "note": "Cloud Functions pasó a llamarse Cloud Run functions en 2024."
+  },
+  {
+    "key": "compute.container",
+    "name": "Contenedor serverless",
+    "family": "compute",
+    "tier": "core",
+    "description": "Contenedor que escala solo, sin administrar el clúster.",
+    "icon": "<rect x=\"6\" y=\"12\" width=\"32\" height=\"24\" rx=\"3\"/><path d=\"M14 12V36M22 12V36M30 12V36\"/>"
+  },
+  {
+    "key": "compute.vm",
+    "name": "Máquina virtual",
+    "family": "compute",
+    "tier": "core",
+    "description": "Servidor virtual con sistema operativo completo.",
+    "icon": "<rect x=\"4\" y=\"4\" width=\"36\" height=\"36\" rx=\"5\" stroke-dasharray=\"4 3\"/><rect x=\"11\" y=\"11\" width=\"22\" height=\"9\" rx=\"2\"/><rect x=\"11\" y=\"24\" width=\"22\" height=\"9\" rx=\"2\"/><path d=\"M15 15.5H16M15 28.5H16\"/>"
+  },
+  {
+    "key": "compute.autoscale",
+    "name": "Grupo autoescalable",
+    "family": "compute",
+    "tier": "core",
+    "description": "Conjunto de máquinas idénticas que crece y decrece con la carga.",
+    "icon": "<rect x=\"4\" y=\"13\" width=\"11\" height=\"15\" rx=\"2\"/><rect x=\"17\" y=\"13\" width=\"11\" height=\"15\" rx=\"2\"/><rect x=\"30\" y=\"13\" width=\"10\" height=\"15\" rx=\"2\" stroke-dasharray=\"3 2\"/><path d=\"M8 36H36M32 32L36 36L32 40\"/>"
+  },
+  {
+    "key": "compute.cluster",
+    "name": "Kubernetes",
+    "family": "compute",
+    "tier": "core",
+    "description": "Clúster de Kubernetes administrado.",
+    "icon": "<path d=\"M22 4L38 13V31L22 40L6 31V13Z\"/><circle cx=\"22\" cy=\"22\" r=\"5\"/><path d=\"M22 17V10M22 27V34M17.7 19.5L11.5 16M26.3 24.5L32.5 28\"/>"
+  },
+  {
+    "key": "compute.webapp",
+    "name": "Aplicación web administrada",
+    "family": "compute",
+    "tier": "core",
+    "description": "Plataforma que despliega una app web desde código, sin contenedores explícitos.",
+    "icon": "<rect x=\"4\" y=\"7\" width=\"36\" height=\"30\" rx=\"3\"/><path d=\"M4 15H40\"/><path d=\"M22 32V21M17 26L22 21L27 26\"/>"
+  },
+  {
+    "key": "compute.static",
+    "name": "Sitio estático",
+    "family": "compute",
+    "tier": "core",
+    "description": "Hosting de HTML, JS y archivos estáticos con CDN incluido.",
+    "icon": "<rect x=\"4\" y=\"7\" width=\"36\" height=\"30\" rx=\"3\"/><path d=\"M4 15H40M11 22H26M11 28H21\"/>"
+  },
+  {
+    "key": "compute.batch",
+    "name": "Proceso batch",
+    "family": "compute",
+    "tier": "core",
+    "description": "Trabajos por lotes que se encolan y corren hasta terminar.",
+    "icon": "<rect x=\"6\" y=\"18\" width=\"24\" height=\"18\" rx=\"3\"/><path d=\"M12 12H34V30\"/><path d=\"M18 6H40V24\"/>"
+  },
+  {
+    "key": "compute.workflow",
+    "name": "Orquestador",
+    "family": "compute",
+    "tier": "core",
+    "description": "Flujo de pasos con estado, reintentos y ramas.",
+    "icon": "<circle cx=\"10\" cy=\"22\" r=\"4\"/><circle cx=\"34\" cy=\"10\" r=\"4\"/><circle cx=\"34\" cy=\"34\" r=\"4\"/><path d=\"M14 22H20V10H30M20 22V34H30\"/>"
+  },
+  {
+    "key": "compute.schedule",
+    "name": "Programador",
+    "family": "compute",
+    "tier": "extended",
+    "description": "Dispara una acción a una hora o con una frecuencia fija.",
+    "icon": "<circle cx=\"22\" cy=\"24\" r=\"15\"/><path d=\"M22 15V24L28 28\"/><path d=\"M8 8L13 4M36 8L31 4\"/>",
+    "note": "Azure no tiene un servicio de programación independiente desde que retiró Azure Scheduler; se resuelve con disparadores."
+  },
+  {
+    "key": "compute.accelerator",
+    "name": "Acelerador GPU",
+    "family": "compute",
+    "tier": "core",
+    "description": "Cómputo con GPU u otro acelerador para IA o gráficos.",
+    "icon": "<rect x=\"10\" y=\"10\" width=\"24\" height=\"24\" rx=\"3\"/><rect x=\"16\" y=\"16\" width=\"12\" height=\"12\" rx=\"1\"/><path d=\"M16 4V10M22 4V10M28 4V10M16 34V40M22 34V40M28 34V40M4 16H10M4 22H10M4 28H10M34 16H40M34 22H40M34 28H40\"/>"
+  },
+  {
+    "key": "compute.edge",
+    "name": "Cómputo en el borde",
+    "family": "compute",
+    "tier": "extended",
+    "description": "Código que corre en los puntos de presencia del CDN, cerca del usuario.",
+    "icon": "<rect x=\"12\" y=\"8\" width=\"20\" height=\"22\" rx=\"3\"/><path d=\"M23 12L18 20H22L20 26L26 18H22Z\"/><path d=\"M22 30V38\"/><path d=\"M4 38H40\" stroke-dasharray=\"3 3\"/>",
+    "note": "Solo AWS ofrece ejecutar código propio en el borde como servicio nativo."
+  },
+  {
+    "key": "compute.hybrid",
+    "name": "Nube en sitio",
+    "family": "compute",
+    "tier": "extended",
+    "description": "Infraestructura del proveedor instalada en un centro de datos propio.",
+    "icon": "<path d=\"M6 38V16L16 10V38M16 20H28V38M3 38H41\"/><path d=\"M24 14A5 5 0 0 1 32 10A4.5 4.5 0 0 1 39 15H24Z\"/>",
+    "note": "Los tres existen pero difieren mucho en modelo de compra y servicios incluidos. Azure Stack HCI se renombró Azure Local."
+  },
+  {
+    "key": "db.relational",
+    "name": "Relacional",
+    "family": "db",
+    "tier": "core",
+    "description": "Base SQL administrada: PostgreSQL, MySQL o SQL Server.",
+    "icon": "<ellipse cx=\"22\" cy=\"10\" rx=\"14\" ry=\"5\"/><path d=\"M8 10V34A14 5 0 0 0 36 34V10\"/><path d=\"M8 22A14 5 0 0 0 36 22\"/>"
+  },
+  {
+    "key": "db.document",
+    "name": "Documental",
+    "family": "db",
+    "tier": "core",
+    "description": "Documentos JSON con esquema flexible.",
+    "icon": "<path d=\"M10 4H28L36 12V40H10Z\"/><path d=\"M28 4V12H36\"/><path d=\"M19 18Q16 18 16 21V22Q16 24 14 24Q16 24 16 26V27Q16 30 19 30M27 18Q30 18 30 21V22Q30 24 32 24Q30 24 30 26V27Q30 30 27 30\"/>"
+  },
+  {
+    "key": "db.keyvalue",
+    "name": "Clave-valor",
+    "family": "db",
+    "tier": "core",
+    "description": "Lecturas y escrituras por clave con latencia baja a cualquier escala.",
+    "icon": "<rect x=\"4\" y=\"10\" width=\"14\" height=\"24\" rx=\"2\"/><rect x=\"22\" y=\"10\" width=\"18\" height=\"24\" rx=\"2\"/><path d=\"M4 18H18M4 26H18M22 18H40M22 26H40\"/>",
+    "note": "En Google la elección depende del patrón: Bigtable para volumen, Firestore para apps."
+  },
+  {
+    "key": "db.widecolumn",
+    "name": "Columnar ancha",
+    "family": "db",
+    "tier": "core",
+    "description": "Modelo tipo Cassandra o HBase para volúmenes muy grandes.",
+    "icon": "<rect x=\"6\" y=\"6\" width=\"32\" height=\"32\" rx=\"3\"/><path d=\"M6 14H38M17 6V38M28 6V38\"/>"
+  },
+  {
+    "key": "db.graph",
+    "name": "Grafo",
+    "family": "db",
+    "tier": "core",
+    "description": "Nodos y relaciones consultados con Gremlin, openCypher o GQL.",
+    "icon": "<circle cx=\"10\" cy=\"12\" r=\"4\"/><circle cx=\"34\" cy=\"10\" r=\"4\"/><circle cx=\"22\" cy=\"34\" r=\"4\"/><circle cx=\"37\" cy=\"31\" r=\"3\"/><path d=\"M14 11.8H30M12 15.5L20 30.5M32.5 13.8L23.5 30.3M26 33.2L34 31.6\"/>"
+  },
+  {
+    "key": "db.vector",
+    "name": "Vectorial",
+    "family": "db",
+    "tier": "core",
+    "description": "Búsqueda por similitud sobre embeddings.",
+    "icon": "<path d=\"M8 36L32 12M8 36L36 30M8 36L17 8\"/><circle cx=\"34\" cy=\"10\" r=\"2.5\"/><circle cx=\"38\" cy=\"30\" r=\"2.5\"/><circle cx=\"18\" cy=\"6\" r=\"2.5\"/><circle cx=\"8\" cy=\"36\" r=\"2\"/>",
+    "note": "Los tres también permiten pgvector en su PostgreSQL administrado."
+  },
+  {
+    "key": "db.cache",
+    "name": "Caché en memoria",
+    "family": "db",
+    "tier": "core",
+    "description": "Redis o Valkey administrado.",
+    "icon": "<circle cx=\"22\" cy=\"25\" r=\"14\"/><path d=\"M22 25L29 18M18 6H26M22 6V11\"/>",
+    "note": "Azure Cache for Redis está en retiro; su reemplazo es Azure Managed Redis."
+  },
+  {
+    "key": "db.timeseries",
+    "name": "Series de tiempo",
+    "family": "db",
+    "tier": "extended",
+    "description": "Mediciones indexadas por tiempo.",
+    "icon": "<ellipse cx=\"22\" cy=\"10\" rx=\"14\" ry=\"5\"/><path d=\"M8 10V34A14 5 0 0 0 36 34V10\"/><path d=\"M13 30L18 23L23 27L31 17\"/>",
+    "note": "Google no tiene motor dedicado; se resuelve con Bigtable o BigQuery. Azure Time Series Insights se retiró en 2025."
+  },
+  {
+    "key": "db.search",
+    "name": "Motor de búsqueda",
+    "family": "db",
+    "tier": "extended",
+    "description": "Índice de texto completo con relevancia y facetas.",
+    "icon": "<circle cx=\"19\" cy=\"19\" r=\"12\"/><path d=\"M28 28L38 38\"/><path d=\"M13 17H25M13 22H21\"/>",
+    "note": "Vertex AI Search es una búsqueda administrada de alto nivel; Google no ofrece OpenSearch o Elasticsearch propio."
+  },
+  {
+    "key": "db.migration",
+    "name": "Migración de bases",
+    "family": "db",
+    "tier": "core",
+    "description": "Copia y replica datos de una base origen a otra destino.",
+    "icon": "<ellipse cx=\"11\" cy=\"9\" rx=\"7\" ry=\"3\"/><path d=\"M4 9V19A7 3 0 0 0 18 19V9\"/><ellipse cx=\"33\" cy=\"25\" rx=\"7\" ry=\"3\"/><path d=\"M26 25V35A7 3 0 0 0 40 35V25\"/><path d=\"M11 26V31Q11 34 14 34H21M18 30L22 34L18 38\"/>"
+  },
+  {
+    "key": "storage.object",
+    "name": "Objetos",
+    "family": "storage",
+    "tier": "core",
+    "description": "Archivos por clave en buckets, con acceso HTTP.",
+    "icon": "<path d=\"M7 12H37L33 38H11Z\"/><path d=\"M15 12A7 7 0 0 1 29 12\"/>"
+  },
+  {
+    "key": "storage.block",
+    "name": "Disco de bloque",
+    "family": "storage",
+    "tier": "core",
+    "description": "Disco persistente conectado a una máquina.",
+    "icon": "<rect x=\"6\" y=\"10\" width=\"32\" height=\"24\" rx=\"4\"/><path d=\"M6 25H38M30 29.5H32\"/>"
+  },
+  {
+    "key": "storage.file",
+    "name": "Archivos compartidos",
+    "family": "storage",
+    "tier": "core",
+    "description": "Sistema de archivos NFS o SMB compartido entre máquinas.",
+    "icon": "<path d=\"M5 12A3 3 0 0 1 8 9H17L21 13H36A3 3 0 0 1 39 16V33A3 3 0 0 1 36 36H8A3 3 0 0 1 5 33Z\"/>"
+  },
+  {
+    "key": "storage.archive",
+    "name": "Archivo frío",
+    "family": "storage",
+    "tier": "core",
+    "description": "Almacenamiento barato para datos que casi no se leen.",
+    "icon": "<rect x=\"5\" y=\"8\" width=\"34\" height=\"9\" rx=\"2\"/><path d=\"M8 17V34A2 2 0 0 0 10 36H34A2 2 0 0 0 36 34V17M18 24H26\"/>"
+  },
+  {
+    "key": "storage.backup",
+    "name": "Respaldo",
+    "family": "storage",
+    "tier": "core",
+    "description": "Copias programadas con retención y restauración.",
+    "icon": "<path d=\"M36 22A14 14 0 1 1 31 11\"/><path d=\"M31 4V11H38\"/><rect x=\"16\" y=\"17\" width=\"12\" height=\"10\" rx=\"2\"/>"
+  },
+  {
+    "key": "storage.lake",
+    "name": "Data lake",
+    "family": "storage",
+    "tier": "core",
+    "description": "Almacén de datos crudos y curados en formatos abiertos.",
+    "icon": "<path d=\"M4 12H40M6 12L12 36H32L38 12\"/><path d=\"M11 21Q16.5 17 22 21T33 21M13 28Q17.5 25 22 28T31 28\"/>"
+  },
+  {
+    "key": "storage.transfer",
+    "name": "Transferencia",
+    "family": "storage",
+    "tier": "core",
+    "description": "Mueve grandes volúmenes desde otro sitio o nube.",
+    "icon": "<path d=\"M8 15H34M28 9L34 15L28 21\"/><path d=\"M36 29H10M16 23L10 29L16 35\"/>"
+  },
+  {
+    "key": "analytics.warehouse",
+    "name": "Data warehouse",
+    "family": "analytics",
+    "tier": "core",
+    "description": "Base analítica columnar para consultas SQL sobre mucho volumen.",
+    "icon": "<path d=\"M5 16L22 6L39 16V38H5Z\"/><rect x=\"12\" y=\"22\" width=\"20\" height=\"16\"/><path d=\"M12 30H32\"/>"
+  },
+  {
+    "key": "analytics.etl",
+    "name": "ETL / pipeline",
+    "family": "analytics",
+    "tier": "core",
+    "description": "Extrae, transforma y carga datos entre sistemas.",
+    "icon": "<circle cx=\"8\" cy=\"22\" r=\"4\"/><rect x=\"17\" y=\"16\" width=\"12\" height=\"12\" rx=\"3\"/><path d=\"M12 22H17M29 22H37M33 18L37 22L33 26\"/>"
+  },
+  {
+    "key": "analytics.streaming",
+    "name": "Procesamiento de streams",
+    "family": "analytics",
+    "tier": "core",
+    "description": "Cálculo continuo sobre eventos en tiempo real.",
+    "icon": "<path d=\"M4 16Q9 12 14 16T24 16M4 28Q9 24 14 28T24 28\"/><path d=\"M24 16L30 22L24 28\"/><circle cx=\"35\" cy=\"22\" r=\"5\"/>"
+  },
+  {
+    "key": "analytics.distributed",
+    "name": "Procesamiento distribuido",
+    "family": "analytics",
+    "tier": "core",
+    "description": "Spark o Hadoop administrado.",
+    "icon": "<circle cx=\"11\" cy=\"11\" r=\"4\"/><circle cx=\"33\" cy=\"11\" r=\"4\"/><circle cx=\"11\" cy=\"33\" r=\"4\"/><circle cx=\"33\" cy=\"33\" r=\"4\"/><circle cx=\"22\" cy=\"22\" r=\"5\"/><path d=\"M14 14L18.5 18.5M30 14L25.5 18.5M14 30L18.5 25.5M30 30L25.5 25.5\"/>"
+  },
+  {
+    "key": "analytics.query",
+    "name": "Consulta sobre el lago",
+    "family": "analytics",
+    "tier": "core",
+    "description": "SQL sin servidor directamente sobre archivos.",
+    "icon": "<path d=\"M6 8H30V20M6 8V32H20M6 16H30M14 8V32\"/><circle cx=\"30\" cy=\"30\" r=\"6\"/><path d=\"M34.5 34.5L39 39\"/>"
+  },
+  {
+    "key": "analytics.bi",
+    "name": "Tablero BI",
+    "family": "analytics",
+    "tier": "core",
+    "description": "Tableros y reportes para el negocio.",
+    "icon": "<rect x=\"4\" y=\"6\" width=\"36\" height=\"32\" rx=\"3\"/><path d=\"M11 31V24M18 31V16M25 31V20M32 31V12\"/>",
+    "note": "QuickSight pasó a formar parte de Amazon Quick (antes Quick Suite) y se escribe Quick Sight."
+  },
+  {
+    "key": "analytics.catalog",
+    "name": "Catálogo de datos",
+    "family": "analytics",
+    "tier": "core",
+    "description": "Inventario buscable de tablas, dueños y significado.",
+    "icon": "<path d=\"M6 6H22L38 22L22 38L6 22Z\"/><circle cx=\"15\" cy=\"15\" r=\"3\"/>",
+    "note": "Google Data Catalog fue absorbido por Dataplex Universal Catalog."
+  },
+  {
+    "key": "analytics.lineage",
+    "name": "Linaje",
+    "family": "analytics",
+    "tier": "core",
+    "description": "De dónde viene cada dato y por qué transformaciones pasó.",
+    "icon": "<circle cx=\"8\" cy=\"10\" r=\"4\"/><circle cx=\"8\" cy=\"34\" r=\"4\"/><circle cx=\"36\" cy=\"22\" r=\"4\"/><path d=\"M12 10H20Q24 10 24 14V30Q24 34 20 34H12M24 22H32\"/>"
+  },
+  {
+    "key": "analytics.quality",
+    "name": "Calidad de datos",
+    "family": "analytics",
+    "tier": "core",
+    "description": "Reglas que validan completitud, formato y frescura.",
+    "icon": "<rect x=\"5\" y=\"6\" width=\"22\" height=\"24\" rx=\"3\"/><path d=\"M5 13H27M13 6V30\"/><circle cx=\"31\" cy=\"32\" r=\"8\"/><path d=\"M27.5 32L30 34.5L35 29.5\"/>"
+  },
+  {
+    "key": "ai.llm",
+    "name": "Modelos fundacionales",
+    "family": "ai",
+    "tier": "core",
+    "description": "Acceso por API a modelos generativos de texto, imagen o voz.",
+    "icon": "<path d=\"M20 6Q22 18 32 20Q22 22 20 34Q18 22 8 20Q18 18 20 6Z\"/><path d=\"M34 6V12M31 9H37\"/>",
+    "note": "Azure AI Foundry se renombró Microsoft Foundry en noviembre de 2025."
+  },
+  {
+    "key": "ai.agent",
+    "name": "Agente",
+    "family": "ai",
+    "tier": "core",
+    "description": "Agente de IA con herramientas, memoria y ejecución administrada.",
+    "icon": "<rect x=\"8\" y=\"12\" width=\"28\" height=\"22\" rx=\"5\"/><path d=\"M22 12V7\"/><circle cx=\"22\" cy=\"5\" r=\"2\"/><circle cx=\"16\" cy=\"22\" r=\"2\"/><circle cx=\"28\" cy=\"22\" r=\"2\"/><path d=\"M17 29H27\"/>"
+  },
+  {
+    "key": "ai.knowledge",
+    "name": "Base de conocimiento",
+    "family": "ai",
+    "tier": "core",
+    "description": "Recuperación sobre documentos propios para respuestas con contexto (RAG).",
+    "icon": "<path d=\"M6 8H18A4 4 0 0 1 22 12V38A3 3 0 0 0 19 35H6Z\"/><path d=\"M38 8H26A4 4 0 0 0 22 12V38A3 3 0 0 1 25 35H38Z\"/><path d=\"M30 15V23M26 19H34\"/>"
+  },
+  {
+    "key": "ai.guardrail",
+    "name": "Guardrails",
+    "family": "ai",
+    "tier": "core",
+    "description": "Filtros de seguridad para entradas y salidas de modelos.",
+    "icon": "<path d=\"M22 4L37 10V21Q37 33 22 40Q7 33 7 21V10Z\"/><path d=\"M22 14Q23 20 28 21Q23 22 22 28Q21 22 16 21Q21 20 22 14Z\"/>"
+  },
+  {
+    "key": "ai.model",
+    "name": "Registro de modelos",
+    "family": "ai",
+    "tier": "core",
+    "description": "Modelos propios versionados, listos para desplegar.",
+    "icon": "<path d=\"M22 4L38 13V31L22 40L6 31V13Z\"/><path d=\"M6 13L22 22L38 13M22 22V40\"/>"
+  },
+  {
+    "key": "ai.training",
+    "name": "Entrenamiento",
+    "family": "ai",
+    "tier": "core",
+    "description": "Trabajos de entrenamiento y ajuste fino de modelos.",
+    "icon": "<path d=\"M6 6V38H40\"/><path d=\"M10 10Q16 30 38 32\"/><path d=\"M28 10H36V18\"/>"
+  },
+  {
+    "key": "ai.inference",
+    "name": "Inferencia",
+    "family": "ai",
+    "tier": "core",
+    "description": "Endpoint que sirve predicciones de un modelo propio.",
+    "icon": "<path d=\"M16 8L28 14V28L16 34L4 28V14Z\"/><path d=\"M4 14L16 20L28 14M16 20V34\"/><path d=\"M32 21H40M36 17L40 21L36 25\"/>"
+  },
+  {
+    "key": "ai.pipeline",
+    "name": "Pipeline de ML",
+    "family": "ai",
+    "tier": "core",
+    "description": "Pasos de preparación, entrenamiento y despliegue automatizados.",
+    "icon": "<path d=\"M16 6L24 10.5V19.5L16 24L8 19.5V10.5Z\"/><circle cx=\"34\" cy=\"15\" r=\"4\"/><circle cx=\"16\" cy=\"36\" r=\"4\"/><circle cx=\"34\" cy=\"36\" r=\"4\"/><path d=\"M24 15H30M16 24V32M20 36H30M34 19V32\"/>"
+  },
+  {
+    "key": "ai.features",
+    "name": "Feature store",
+    "family": "ai",
+    "tier": "core",
+    "description": "Variables de entrada compartidas entre entrenamiento e inferencia.",
+    "icon": "<rect x=\"5\" y=\"5\" width=\"15\" height=\"15\" rx=\"2\"/><rect x=\"24\" y=\"5\" width=\"15\" height=\"15\" rx=\"2\"/><rect x=\"5\" y=\"24\" width=\"15\" height=\"15\" rx=\"2\"/><path d=\"M31.5 25V38M25 31.5H38\"/>"
+  },
+  {
+    "key": "ai.notebook",
+    "name": "Notebook",
+    "family": "ai",
+    "tier": "core",
+    "description": "Entorno interactivo para explorar datos y modelos.",
+    "icon": "<rect x=\"9\" y=\"5\" width=\"28\" height=\"34\" rx=\"3\"/><path d=\"M5 12H11M5 20H11M5 28H11\"/><path d=\"M17 14H31M17 21H28M17 28L20 31L17 34\"/>"
+  },
+  {
+    "key": "ai.vision",
+    "name": "Visión",
+    "family": "ai",
+    "tier": "core",
+    "description": "Detecta objetos, rostros y texto en imágenes y video.",
+    "icon": "<path d=\"M3 22Q22 4 41 22Q22 40 3 22Z\"/><circle cx=\"22\" cy=\"22\" r=\"6\"/>"
+  },
+  {
+    "key": "ai.speech",
+    "name": "Voz",
+    "family": "ai",
+    "tier": "core",
+    "description": "Voz a texto y texto a voz.",
+    "icon": "<path d=\"M6 18V26M12 13V31M18 8V36M24 14V30M30 10V34M36 17V27\"/>"
+  },
+  {
+    "key": "ai.nlp",
+    "name": "Lenguaje natural",
+    "family": "ai",
+    "tier": "core",
+    "description": "Entidades, sentimiento y clasificación de texto.",
+    "icon": "<path d=\"M6 8H38V30H18L10 37V30H6Z\"/><path d=\"M13 16H31M13 22H25\"/>"
+  },
+  {
+    "key": "ai.translate",
+    "name": "Traducción",
+    "family": "ai",
+    "tier": "core",
+    "description": "Traducción automática entre idiomas.",
+    "icon": "<rect x=\"4\" y=\"6\" width=\"22\" height=\"18\" rx=\"3\"/><path d=\"M18 24V35A3 3 0 0 0 21 38H37A3 3 0 0 0 40 35V23A3 3 0 0 0 37 20H26\"/><path d=\"M10 15H20M24 29H34\"/>"
+  },
+  {
+    "key": "ai.document",
+    "name": "Extracción de documentos",
+    "family": "ai",
+    "tier": "core",
+    "description": "Lee formularios, facturas y tablas desde PDF o imágenes.",
+    "icon": "<path d=\"M4 12V4H12M32 4H40V12M40 32V40H32M12 40H4V32\"/><path d=\"M14 14H30M14 22H30M14 30H24\"/>"
+  },
+  {
+    "key": "msg.queue",
+    "name": "Cola",
+    "family": "msg",
+    "tier": "core",
+    "description": "Mensajes que espera un solo consumidor, con reintentos.",
+    "icon": "<rect x=\"4\" y=\"14\" width=\"36\" height=\"16\" rx=\"8\"/><path d=\"M15 18V26M22 18V26M29 18V26\"/>",
+    "note": "Google no tiene un servicio llamado cola de mensajes; Pub/Sub con suscripción pull cumple el rol."
+  },
+  {
+    "key": "msg.topic",
+    "name": "Topic",
+    "family": "msg",
+    "tier": "core",
+    "description": "Un mensaje publicado llega a todos los suscriptores.",
+    "icon": "<circle cx=\"11\" cy=\"22\" r=\"5\"/><path d=\"M21 12A12 12 0 0 1 21 32M29 6A20 20 0 0 1 29 38\"/>"
+  },
+  {
+    "key": "msg.bus",
+    "name": "Bus de eventos",
+    "family": "msg",
+    "tier": "core",
+    "description": "Enruta eventos por reglas entre servicios y SaaS.",
+    "icon": "<path d=\"M4 22H40M10 22V13M22 22V31M34 22V13\"/><circle cx=\"10\" cy=\"10\" r=\"3\"/><circle cx=\"22\" cy=\"34\" r=\"3\"/><circle cx=\"34\" cy=\"10\" r=\"3\"/>"
+  },
+  {
+    "key": "msg.stream",
+    "name": "Stream",
+    "family": "msg",
+    "tier": "core",
+    "description": "Registro ordenado y reproducible de eventos de alto volumen.",
+    "icon": "<path d=\"M4 14Q13 8 22 14T40 14M4 22Q13 16 22 22T40 22M4 30Q13 24 22 30T40 30\"/>",
+    "note": "Pub/Sub no es un log reproducible por particiones como Kinesis o Event Hubs; para eso usar msg.kafka."
+  },
+  {
+    "key": "msg.kafka",
+    "name": "Kafka",
+    "family": "msg",
+    "tier": "core",
+    "description": "Apache Kafka administrado.",
+    "icon": "<circle cx=\"8\" cy=\"22\" r=\"4\"/><circle cx=\"22\" cy=\"8\" r=\"4\"/><circle cx=\"22\" cy=\"22\" r=\"4\"/><circle cx=\"22\" cy=\"36\" r=\"4\"/><circle cx=\"36\" cy=\"15\" r=\"4\"/><circle cx=\"36\" cy=\"29\" r=\"4\"/><path d=\"M12 22H18M22 12V18M22 26V32M25.5 20L32.5 17M25.5 24L32.5 27\"/>",
+    "note": "Event Hubs habla el protocolo Kafka, pero no es Kafka completo."
+  },
+  {
+    "key": "msg.notify",
+    "name": "Notificaciones push",
+    "family": "msg",
+    "tier": "core",
+    "description": "Mensajes a dispositivos móviles.",
+    "icon": "<path d=\"M10 30V20A12 12 0 0 1 34 20V30L37 33H7Z\"/><path d=\"M18 37A4 4 0 0 0 26 37\"/>"
+  },
+  {
+    "key": "msg.connector",
+    "name": "Conector SaaS",
+    "family": "msg",
+    "tier": "core",
+    "description": "Integración administrada con aplicaciones como Salesforce o SAP.",
+    "icon": "<path d=\"M14 6V14M22 6V14M10 14H26V22A8 8 0 0 1 10 22Z\"/><path d=\"M18 30V38H36\"/>"
+  },
+  {
+    "key": "msg.email",
+    "name": "Correo",
+    "family": "msg",
+    "tier": "extended",
+    "description": "Envío de correo transaccional.",
+    "icon": "<rect x=\"4\" y=\"9\" width=\"36\" height=\"26\" rx=\"3\"/><path d=\"M4 12L22 25L40 12\"/>",
+    "note": "Google Cloud no tiene envío de correo propio; se usa un proveedor externo."
+  },
+  {
+    "key": "msg.iot",
+    "name": "Hub IoT",
+    "family": "msg",
+    "tier": "extended",
+    "description": "Conecta y administra flotas de dispositivos.",
+    "icon": "<circle cx=\"22\" cy=\"22\" r=\"6\"/><rect x=\"3\" y=\"3\" width=\"8\" height=\"8\" rx=\"2\"/><rect x=\"33\" y=\"3\" width=\"8\" height=\"8\" rx=\"2\"/><rect x=\"3\" y=\"33\" width=\"8\" height=\"8\" rx=\"2\"/><rect x=\"33\" y=\"33\" width=\"8\" height=\"8\" rx=\"2\"/><path d=\"M11 11L17.8 17.8M33 11L26.2 17.8M11 33L17.8 26.2M33 33L26.2 26.2\"/>",
+    "note": "Google retiró Cloud IoT Core en 2023."
+  },
+  {
+    "key": "msg.api",
+    "name": "API (contrato)",
+    "family": "msg",
+    "tier": "notation",
+    "description": "Contrato OpenAPI, gRPC o GraphQL que expone un componente.",
+    "icon": "<path d=\"M14 10L5 22L14 34M30 10L39 22L30 34M25 8L19 36\"/>",
+    "note": "Es documentación del lenguaje: describe la interfaz, no crea un recurso."
+  },
+  {
+    "key": "msg.webhook",
+    "name": "Webhook",
+    "family": "msg",
+    "tier": "notation",
+    "description": "Llamada HTTP saliente hacia un sistema que se suscribió.",
+    "icon": "<circle cx=\"13\" cy=\"31\" r=\"5\"/><circle cx=\"31\" cy=\"31\" r=\"5\"/><circle cx=\"22\" cy=\"12\" r=\"5\"/><path d=\"M19.5 16.5L15.5 26.5M24.5 16.5L28.5 26.5M18 31H26\"/>",
+    "note": "Patrón, no servicio. Se implementa con una función y una cola."
+  },
+  {
+    "key": "net.private",
+    "name": "Red privada",
+    "family": "net",
+    "tier": "core",
+    "description": "Red aislada donde viven los componentes internos. Se dibuja como zona.",
+    "icon": "<rect x=\"4\" y=\"6\" width=\"36\" height=\"32\" rx=\"4\" stroke-dasharray=\"4 3\"/><circle cx=\"14\" cy=\"22\" r=\"3\"/><circle cx=\"30\" cy=\"22\" r=\"3\"/><path d=\"M17 22H27\"/>"
+  },
+  {
+    "key": "net.public",
+    "name": "Zona pública",
+    "family": "net",
+    "tier": "core",
+    "description": "Parte de la red alcanzable desde internet. Se dibuja como zona.",
+    "icon": "<rect x=\"4\" y=\"6\" width=\"36\" height=\"32\" rx=\"4\" stroke-dasharray=\"4 3\"/><circle cx=\"22\" cy=\"22\" r=\"8\"/><path d=\"M14 22H30M22 14Q26.5 22 22 30Q17.5 22 22 14\"/>"
+  },
+  {
+    "key": "net.gateway",
+    "name": "API gateway",
+    "family": "net",
+    "tier": "core",
+    "description": "Puerta de entrada para APIs: rutas, autenticación y límites.",
+    "icon": "<path d=\"M10 38V18A12 12 0 0 1 34 18V38M4 38H40\"/><path d=\"M16 28H28M24 24L28 28L24 32\"/>"
+  },
+  {
+    "key": "net.loadbalancer",
+    "name": "Balanceador",
+    "family": "net",
+    "tier": "core",
+    "description": "Reparte tráfico entre instancias sanas.",
+    "icon": "<path d=\"M22 8V38M14 38H30M8 12H36\"/><path d=\"M8 12L4 24H12Z\"/><path d=\"M36 12L32 24H40Z\"/>"
+  },
+  {
+    "key": "net.cdn",
+    "name": "CDN",
+    "family": "net",
+    "tier": "core",
+    "description": "Caché de contenido en puntos de presencia globales.",
+    "icon": "<circle cx=\"22\" cy=\"22\" r=\"16\"/><ellipse cx=\"22\" cy=\"22\" rx=\"7\" ry=\"16\"/><path d=\"M6 22H38\"/>",
+    "note": "Azure CDN clásico se reemplaza por Azure Front Door."
+  },
+  {
+    "key": "net.dns",
+    "name": "DNS",
+    "family": "net",
+    "tier": "core",
+    "description": "Resolución de nombres de dominio.",
+    "icon": "<path d=\"M22 4V40M14 40H30\"/><path d=\"M22 8H36L40 12L36 16H22M22 20H8L4 24L8 28H22\"/>"
+  },
+  {
+    "key": "net.nat",
+    "name": "Salida NAT",
+    "family": "net",
+    "tier": "core",
+    "description": "Permite salir a internet sin exponer IPs privadas.",
+    "icon": "<circle cx=\"22\" cy=\"22\" r=\"16\"/><path d=\"M14 22H30M25 17L30 22L25 27\"/>"
+  },
+  {
+    "key": "net.privatelink",
+    "name": "Endpoint privado",
+    "family": "net",
+    "tier": "core",
+    "description": "Acceso a un servicio administrado por IP privada, sin pasar por internet.",
+    "icon": "<rect x=\"4\" y=\"4\" width=\"36\" height=\"36\" rx=\"4\" stroke-dasharray=\"4 3\"/><path d=\"M17 12V18M27 12V18M13 18H31V23A9 9 0 0 1 13 23Z\"/><path d=\"M22 32V37\"/>"
+  },
+  {
+    "key": "net.peering",
+    "name": "Interconexión de redes",
+    "family": "net",
+    "tier": "core",
+    "description": "Une redes privadas entre sí.",
+    "icon": "<rect x=\"3\" y=\"12\" width=\"14\" height=\"20\" rx=\"3\"/><rect x=\"27\" y=\"12\" width=\"14\" height=\"20\" rx=\"3\"/><path d=\"M17 19H27M17 25H27\"/>"
+  },
+  {
+    "key": "net.vpn",
+    "name": "VPN",
+    "family": "net",
+    "tier": "core",
+    "description": "Túnel cifrado sobre internet hacia otra red.",
+    "icon": "<rect x=\"4\" y=\"14\" width=\"36\" height=\"16\" rx=\"8\"/><path d=\"M12 22H32M28 18L32 22L28 26\"/>"
+  },
+  {
+    "key": "net.dedicated",
+    "name": "Enlace dedicado",
+    "family": "net",
+    "tier": "core",
+    "description": "Conexión física privada entre un centro de datos y la nube.",
+    "icon": "<path d=\"M4 38V16L14 10V38M2 38H16\"/><path d=\"M14 24H23\"/><path d=\"M27 30A6 6 0 0 1 28 18.2A7 7 0 0 1 41 22A4.5 4.5 0 0 1 38 30Z\"/>"
+  },
+  {
+    "key": "net.mesh",
+    "name": "Service mesh",
+    "family": "net",
+    "tier": "extended",
+    "description": "Tráfico entre servicios con mTLS, reintentos y telemetría.",
+    "icon": "<circle cx=\"10\" cy=\"10\" r=\"4\"/><circle cx=\"34\" cy=\"10\" r=\"4\"/><circle cx=\"10\" cy=\"34\" r=\"4\"/><circle cx=\"34\" cy=\"34\" r=\"4\"/><path d=\"M14 10H30M14 34H30M10 14V30M34 14V30M13 13L31 31M31 13L13 31\"/>",
+    "note": "AWS App Mesh deja de funcionar el 30 de septiembre de 2026."
+  },
+  {
+    "key": "sec.identity",
+    "name": "Identidad y acceso",
+    "family": "sec",
+    "tier": "core",
+    "description": "Usuarios, roles y permisos sobre los recursos de la nube.",
+    "icon": "<rect x=\"6\" y=\"8\" width=\"32\" height=\"28\" rx=\"4\"/><circle cx=\"16\" cy=\"19\" r=\"4\"/><path d=\"M10 30A6 5 0 0 1 22 30M27 18H33M27 24H31\"/>"
+  },
+  {
+    "key": "sec.customer",
+    "name": "Identidad de clientes",
+    "family": "sec",
+    "tier": "core",
+    "description": "Registro e inicio de sesión de los usuarios finales de la app.",
+    "icon": "<circle cx=\"18\" cy=\"14\" r=\"7\"/><path d=\"M4 38A14 12 0 0 1 27 31\"/><path d=\"M28 31L32 35L40 27\"/>"
+  },
+  {
+    "key": "sec.vault",
+    "name": "Bóveda de secretos",
+    "family": "sec",
+    "tier": "core",
+    "description": "Contraseñas, tokens y cadenas de conexión con rotación.",
+    "icon": "<rect x=\"6\" y=\"6\" width=\"32\" height=\"30\" rx=\"4\"/><circle cx=\"22\" cy=\"19\" r=\"3\"/><path d=\"M22 22V28M11 36V40M33 36V40\"/>"
+  },
+  {
+    "key": "sec.kms",
+    "name": "Llaves de cifrado",
+    "family": "sec",
+    "tier": "core",
+    "description": "Llaves administradas para cifrar datos.",
+    "icon": "<circle cx=\"13\" cy=\"22\" r=\"7\"/><path d=\"M20 22H40M34 22V28M28 22V26\"/>"
+  },
+  {
+    "key": "sec.certificate",
+    "name": "Certificados",
+    "family": "sec",
+    "tier": "core",
+    "description": "Certificados TLS emitidos y renovados automáticamente.",
+    "icon": "<rect x=\"4\" y=\"6\" width=\"36\" height=\"24\" rx=\"3\"/><path d=\"M10 13H24M10 19H20\"/><circle cx=\"32\" cy=\"22\" r=\"5\"/><path d=\"M29 26.5L28 37L32 34L36 37L35 26.5\"/>"
+  },
+  {
+    "key": "sec.firewall",
+    "name": "Firewall",
+    "family": "sec",
+    "tier": "core",
+    "description": "Reglas de tráfico de red permitido y bloqueado.",
+    "icon": "<rect x=\"4\" y=\"8\" width=\"36\" height=\"28\" rx=\"2\"/><path d=\"M4 17H40M4 26H40M16 8V17M28 8V17M10 17V26M22 17V26M34 17V26M16 26V36M28 26V36\"/>"
+  },
+  {
+    "key": "sec.protection",
+    "name": "WAF y anti-DDoS",
+    "family": "sec",
+    "tier": "core",
+    "description": "Filtra ataques web y absorbe tráfico malicioso.",
+    "icon": "<path d=\"M22 4L37 10V21Q37 33 22 40Q7 33 7 21V10Z\"/><path d=\"M15 22L20 27L29 17\"/>"
+  },
+  {
+    "key": "sec.policy",
+    "name": "Políticas de organización",
+    "family": "sec",
+    "tier": "core",
+    "description": "Reglas que limitan qué se puede crear y cómo.",
+    "icon": "<path d=\"M10 4H28L36 12V40H10Z\"/><path d=\"M28 4V12H36\"/><path d=\"M16 25L21 30L30 20\"/>"
+  },
+  {
+    "key": "sec.audit",
+    "name": "Auditoría",
+    "family": "sec",
+    "tier": "core",
+    "description": "Registro de quién hizo qué sobre los recursos.",
+    "icon": "<rect x=\"8\" y=\"6\" width=\"28\" height=\"34\" rx=\"3\"/><rect x=\"15\" y=\"3\" width=\"14\" height=\"6\" rx=\"2\"/><path d=\"M14 24Q22 16 30 24Q22 32 14 24Z\"/><circle cx=\"22\" cy=\"24\" r=\"2\"/>"
+  },
+  {
+    "key": "sec.posture",
+    "name": "Postura y amenazas",
+    "family": "sec",
+    "tier": "core",
+    "description": "Detecta configuraciones riesgosas y actividad sospechosa.",
+    "icon": "<circle cx=\"22\" cy=\"22\" r=\"16\"/><circle cx=\"22\" cy=\"22\" r=\"9\"/><path d=\"M22 22L33 11\"/><circle cx=\"29\" cy=\"27\" r=\"2\"/>"
+  },
+  {
+    "key": "ops.metrics",
+    "name": "Métricas",
+    "family": "ops",
+    "tier": "core",
+    "description": "Series numéricas de salud y uso.",
+    "icon": "<rect x=\"4\" y=\"8\" width=\"36\" height=\"28\" rx=\"4\"/><path d=\"M8 24H14L18 16L24 30L28 22H36\"/>"
+  },
+  {
+    "key": "ops.logs",
+    "name": "Logs",
+    "family": "ops",
+    "tier": "core",
+    "description": "Registros de texto centralizados y consultables.",
+    "icon": "<rect x=\"6\" y=\"4\" width=\"32\" height=\"36\" rx=\"3\"/><path d=\"M12 12H32M12 19H28M12 26H32M12 33H22\"/>"
+  },
+  {
+    "key": "ops.traces",
+    "name": "Trazas",
+    "family": "ops",
+    "tier": "core",
+    "description": "Seguimiento de una petición a través de varios servicios.",
+    "icon": "<path d=\"M6 10H24M12 18H34M18 26H28M22 34H38\"/><path d=\"M6 6V38\" stroke-dasharray=\"2 3\"/>"
+  },
+  {
+    "key": "ops.alerts",
+    "name": "Alertas",
+    "family": "ops",
+    "tier": "core",
+    "description": "Avisos cuando una métrica o log cruza un umbral.",
+    "icon": "<path d=\"M22 5L40 37H4Z\"/><path d=\"M22 16V26M22 31V31.5\"/>"
+  },
+  {
+    "key": "ops.cicd",
+    "name": "CI/CD",
+    "family": "ops",
+    "tier": "core",
+    "description": "Compila, prueba y despliega en cada cambio.",
+    "icon": "<path d=\"M22 22C18 15 7 15 7 22C7 29 18 29 22 22C26 15 37 15 37 22C37 29 26 29 22 22Z\"/>"
+  },
+  {
+    "key": "ops.registry",
+    "name": "Registro de artefactos",
+    "family": "ops",
+    "tier": "core",
+    "description": "Imágenes de contenedor y paquetes versionados.",
+    "icon": "<rect x=\"6\" y=\"20\" width=\"32\" height=\"16\" rx=\"3\"/><path d=\"M14 20V36M22 20V36M30 20V36M22 4V14M17 9L22 14L27 9\"/>",
+    "note": "Google Container Registry se apagó; su reemplazo es Artifact Registry."
+  },
+  {
+    "key": "ops.repo",
+    "name": "Repositorio de código",
+    "family": "ops",
+    "tier": "core",
+    "description": "Repositorio Git administrado.",
+    "icon": "<circle cx=\"12\" cy=\"9\" r=\"4\"/><circle cx=\"12\" cy=\"35\" r=\"4\"/><circle cx=\"32\" cy=\"14\" r=\"4\"/><path d=\"M12 13V31M32 18Q32 27 15 31\"/>",
+    "note": "CodeCommit volvió a disponibilidad general a fines de 2025. Cloud Source Repositories no acepta clientes nuevos."
+  },
+  {
+    "key": "ops.iac",
+    "name": "Infraestructura como código",
+    "family": "ops",
+    "tier": "core",
+    "description": "Plantillas declarativas que crean los recursos.",
+    "icon": "<path d=\"M10 4H28L36 12V40H10Z\"/><path d=\"M28 4V12H36\"/><path d=\"M19 20L15 26L19 32M27 20L31 26L27 32\"/>",
+    "note": "Deployment Manager terminó su soporte el 31 de marzo de 2026."
+  },
+  {
+    "key": "ops.config",
+    "name": "Configuración",
+    "family": "ops",
+    "tier": "core",
+    "description": "Parámetros y feature flags fuera del código.",
+    "icon": "<path d=\"M8 10H13M19 10H36M8 22H25M31 22H36M8 34H17M23 34H36\"/><circle cx=\"16\" cy=\"10\" r=\"3\"/><circle cx=\"28\" cy=\"22\" r=\"3\"/><circle cx=\"20\" cy=\"34\" r=\"3\"/>"
+  },
+  {
+    "key": "ops.cost",
+    "name": "Costos",
+    "family": "ops",
+    "tier": "core",
+    "description": "Informes, presupuestos y alertas de gasto.",
+    "icon": "<circle cx=\"22\" cy=\"22\" r=\"16\"/><path d=\"M27 15Q22 12 18 15Q15 19 22 22Q29 25 26 29Q22 32 17 29M22 9V12M22 32V35\"/>"
+  },
+  {
+    "key": "ops.account",
+    "name": "Cuenta / proyecto",
+    "family": "ops",
+    "tier": "core",
+    "description": "Unidad de aislamiento y facturación. Se dibuja como zona.",
+    "icon": "<rect x=\"16\" y=\"4\" width=\"12\" height=\"9\" rx=\"2\"/><rect x=\"4\" y=\"31\" width=\"12\" height=\"9\" rx=\"2\"/><rect x=\"28\" y=\"31\" width=\"12\" height=\"9\" rx=\"2\"/><path d=\"M22 13V22M10 31V22H34V31\"/>"
+  },
+  {
+    "key": "actor.user",
+    "name": "Usuario",
+    "family": "actor",
+    "tier": "notation",
+    "description": "Persona que usa el sistema.",
+    "icon": "<circle cx=\"22\" cy=\"14\" r=\"8\"/><path d=\"M6 40A16 13 0 0 1 38 40\"/>"
+  },
+  {
+    "key": "actor.web",
+    "name": "Navegador",
+    "family": "actor",
+    "tier": "notation",
+    "description": "Cliente web.",
+    "icon": "<rect x=\"4\" y=\"7\" width=\"36\" height=\"30\" rx=\"3\"/><path d=\"M4 15H40M9 11H10M13 11H14\"/>"
+  },
+  {
+    "key": "actor.mobile",
+    "name": "App móvil",
+    "family": "actor",
+    "tier": "notation",
+    "description": "Cliente iOS o Android.",
+    "icon": "<rect x=\"12\" y=\"4\" width=\"20\" height=\"36\" rx=\"3\"/><path d=\"M19 35H25\"/>"
+  },
+  {
+    "key": "actor.iot",
+    "name": "Dispositivo",
+    "family": "actor",
+    "tier": "notation",
+    "description": "Sensor o equipo que envía datos.",
+    "icon": "<rect x=\"14\" y=\"14\" width=\"16\" height=\"16\" rx=\"3\"/><circle cx=\"22\" cy=\"22\" r=\"2\"/><path d=\"M8 8A20 20 0 0 0 8 36M36 8A20 20 0 0 1 36 36\"/>"
+  },
+  {
+    "key": "actor.external",
+    "name": "Sistema externo",
+    "family": "actor",
+    "tier": "notation",
+    "description": "Servicio de terceros fuera de la nube propia.",
+    "icon": "<path d=\"M20 8H8V36H32V24\"/><path d=\"M26 6H38V18M38 6L20 24\"/>"
+  }
+]
